@@ -31,7 +31,7 @@ app.use(express.json())
 // }))
 
 app.use('/trips', tripController)
-app.use('/event', eventController)
+app.use('/events', eventController)
 
 // INITIALISATION
 mongoose.connect(dbURL, () => {
