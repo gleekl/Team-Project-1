@@ -17,6 +17,7 @@ const tripSchema = new Schema({
   }, // how to upload multiple image?
 });
 
+
 const Trip = mongoose.model("Trip", tripSchema);
 
 module.exports = Trip;
