@@ -2,13 +2,14 @@ import { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom'
 
 import "./App.css";
-import TripComponent from './components/TripComponent';
+import TripDetails from './components/TripDetails';
+import TripIndex from './components/TripIndex';
 
 function App() {
   const [trips, setTrips] = useState(null)
 
   const getTrips = async () => {
-    const url = 'http://localhost:4000/trips'
+    const url = 'http://localhost:3000/trips'
     const res = await fetch(url)
     const data = await res.json()
     setTrips(data)
@@ -18,14 +19,12 @@ function App() {
     getTrips()
   }, [])
 
-  console.log(trips);
-
   return (
     <div className="App">
       <Routes>
-        <Route 
-          path="/" 
-          element={<TripComponent trips={trips} />} 
+        <Route path="/" element={trips && <TripIndex trips={trips} />} 
+        />
+        <Route path="/:tripID" element={trips && <TripDetails trips={trips} />} 
         />
       </Routes>
     </div>

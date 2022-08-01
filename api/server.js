@@ -17,9 +17,6 @@ const whitelist = [
 const tripController = require('./controllers/tripController')
 const eventController = require('./controllers/eventController')
 
-app.use(express.json())
-
-// URL to allow
 app.use(cors({
   origin: (origin, cb) => {
     if (whitelist.indexOf(origin) !== -1) {
@@ -29,6 +26,8 @@ app.use(cors({
     }
   }
 }))
+
+app.use(express.json())
 
 app.use('/trips', tripController)
 app.use('/events', eventController)
