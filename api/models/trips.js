@@ -15,3 +15,6 @@ const tripSchema = new Schema({
       "https://res.cloudinary.com/dgb2gz29u/image/upload/v1657851570/empty-image_urwddn.jpg",
   }, // how to upload multiple image?
 });
+
+const Trip = mongoose.model('Trips', tripSchema)
+module.exports = Trip
