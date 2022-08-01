@@ -19,16 +19,16 @@ const eventController = require('./controllers/eventController')
 
 app.use(express.json())
 
-// // URL to allow
-// app.use(cors({
-//   origin: (origin, cb) => {
-//     if (whitelist.indexOf(origin) !== -1) {
-//       cb(null, true)
-//     } else {
-//       cb(new Error())
-//     }
-//   }
-// }))
+// URL to allow
+app.use(cors({
+  origin: (origin, cb) => {
+    if (whitelist.indexOf(origin) !== -1) {
+      cb(null, true)
+    } else {
+      cb(new Error())
+    }
+  }
+}))
 
 app.use('/trips', tripController)
 app.use('/events', eventController)
