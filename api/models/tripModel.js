@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Event = require("./eventModel");
 
 const Schema = mongoose.Schema;
 const tripSchema = new Schema({
@@ -6,7 +7,7 @@ const tripSchema = new Schema({
   title: { type: String, required: true },
   startDate: Date,
   endDate: Date,
-  country: { type: String, required: true }, // change later
+  event: [{ type: Schema.Types.ObjectId, ref: "Event" }],
   totalCost: Number,
   description: String,
   image: {
@@ -16,5 +17,7 @@ const tripSchema = new Schema({
   }, // how to upload multiple image?
 });
 
-const Trip = mongoose.model('Trips', tripSchema)
-module.exports = Trip
+
+const Trip = mongoose.model("Trip", tripSchema);
+
+module.exports = Trip;
