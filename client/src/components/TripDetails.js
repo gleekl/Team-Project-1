@@ -58,32 +58,8 @@ const TripDetails = ({ trips }) => {
             Events {events}
           </Typography>
         </CardContent>
-        {/* <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
-      </CardActions> */}
       </Card>
     </div>
-
-    // <div className="trip-details">
-    //   <h3>Trip Details:</h3>
-    //   <h4>{trip.title}</h4>
-    //   <h5>
-    //     <span>Author:</span> {trip.author}
-    //   </h5>
-    //   <h5>
-    //     <span>Start Date:</span> {trip.startDate}
-    //   </h5>
-    //   <h5>
-    //     <span>End Date:</span> {trip.endDate}
-    //   </h5>
-    //   <h5>
-    //     <span>Total Cost:</span> ${trip.totalCost}
-    //   </h5>
-    //   <h5>
-    //     <span>Events:</span> {events}
-    //   </h5>
-    // </div>
   )
 }
 
