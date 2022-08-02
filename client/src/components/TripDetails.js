@@ -26,10 +26,10 @@ const TripDetails = ({ trips }) => {
           alt="green iguana"
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography gutterBottom variant="h3" component="div">
             {trip.title}
           </Typography>
-          <Typography gutterBottom variant="h6" component="div">
+          <Typography gutterBottom variant="h4" component="div">
             {trip.author}
           </Typography>
           <Typography variant="body2" color="text.secondary">
