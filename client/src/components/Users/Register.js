@@ -1,7 +1,8 @@
 const { useState } = require("react")
+const { Link } = require("react-router-dom")
 
 
-const RegisterUser = (props) => {
+const Register = (props) => {
   const [fields, setFields] = useState({ username: "", password: "" })
 
   const handleChange = (evt) => {
@@ -48,3 +49,5 @@ const RegisterUser = (props) => {
     </form>
   )
 }
+
+export default Register
