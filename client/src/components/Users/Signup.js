@@ -2,7 +2,7 @@ const { useState } = require("react")
 const { Link } = require("react-router-dom")
 
 
-const Register = (props) => {
+const Signup = (props) => {
   const [fields, setFields] = useState({ username: "", password: "" })
 
   const handleChange = (evt) => {
@@ -14,7 +14,7 @@ const Register = (props) => {
 
   const handleSubmit = async (evt) => {
     evt.preventDefault()
-    const res = await fetch('/users/register', {
+    const res = await fetch('/users/signup', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(fields)
@@ -44,10 +44,10 @@ const Register = (props) => {
           id="password"
         />
       </div>
-      <input type="submit" value="Register" />
+      <input type="submit" value="SignUp" />
       <p>Already have an account? <Link to="/login">Login here</Link></p>
     </form>
   )
 }
 
-export default Register
+export default Signup

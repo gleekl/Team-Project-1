@@ -47,7 +47,7 @@ const Login = (props) => {
         />
       </div>
       <input type="submit" value="Login" />
-      <p>No account yet? <Link to="/register">Register here</Link></p>
+      <p>No account yet? <Link to="/signup">Register here</Link></p>
     </form>
   )
 }
