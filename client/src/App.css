@@ -1,26 +1,31 @@
+* {
+  box-sizing: border-box;
+}
+
 nav {
   color: azure;
   background: rgb(55, 55, 55);
   display: flex;
-  align-items: center;
-  padding: 0 30px;
+  align-items: stretch;
   position: fixed;
   top: 0px;
   width: 100%;
-  max-height: 75px;
+  height: 55px;
+}
+
+nav h1 {
+  margin: 0;
 }
 
 nav a {
-  height: 100%;
   color: aliceblue;
-  /* display: inline-block; */
   padding: 10px;
   font-size: 1.2em;
   text-decoration: none;
 }
 
 nav a:hover {
-  background-color: grey;
+  background: grey;
 } 
 
 main {

@@ -9,10 +9,14 @@ const NavigationBar = () => {
       <NavLink to="/">
         My Trips
       </NavLink>
-      <NavLink to="/">
+      <NavLink to="/login">
         Log In
       </NavLink>
-      <NavLink to="/">
+      {/* TEMP LOGOUT BUTTON FOR TEST */}
+      <NavLink to="/logout">
+        Log Out
+      </NavLink>
+      <NavLink to="/signup">
         Sign Up
       </NavLink>
     </nav>
