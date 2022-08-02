@@ -1,34 +1,53 @@
-import { useEffect, useState } from 'react';
-import { Routes, Route } from 'react-router-dom'
+import { useEffect, useState } from "react";
+import { Routes, Route, useNavigate } from "react-router-dom";
 
 import "./App.css";
-import TripDetails from './components/TripDetails';
-import TripIndex from './components/TripIndex';
+import TripDetails from "./components/TripDetails";
+import TripIndex from "./components/TripIndex";
 
 function App() {
-  const [trips, setTrips] = useState(null)
+  const [trips, setTrips] = useState(null);
+  const navigate = useNavigate();
 
   const getTrips = async () => {
-    const url = 'http://localhost:3000/trips'
-    const res = await fetch(url)
-    const data = await res.json()
-    setTrips(data)
-  }
+    const url = "http://localhost:3000/trips";
+    const res = await fetch(url);
+    const data = await res.json();
+    setTrips(data);
+  };
 
   useEffect(() => {
-    getTrips()
-  }, [])
+    getTrips();
+  }, []);
+
+  const handleDelete = async (tripID) => {
+    await fetch(`http://localhost:3000/trips/${tripID}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    setTrips(trips.filter((trip) => trip._id !== tripID));
+    navigate("/");
+  };
 
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={trips && <TripIndex trips={trips} />} 
+        <Route path="/" element={trips && <TripIndex trips={trips} />} />
+        <Route
+          path="/:tripID"
+          element={
+            trips && <TripDetails trips={trips} handleDelete={handleDelete} />
+          }
         />
-        <Route path="/:tripID" element={trips && <TripDetails trips={trips} />} 
-        />
+        {/* <Route
+          path="/:tripID/edit"
+          element={trips && <EditTrip trips={trips} />}
+        /> */}
       </Routes>
     </div>
-  ); 
+  );
 }
 
 export default App;

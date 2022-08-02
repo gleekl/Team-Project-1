@@ -1,8 +1,8 @@
-const { useParams } = require("react-router-dom")
+const { useParams } = require("react-router-dom");
 
-const TripDetails = ({ trips }) => {
-  const { tripID } = useParams()
-  const trip = trips.find((trip) => trip._id === tripID)
+const TripDetails = ({ trips, handleDelete }) => {
+  const { tripID } = useParams();
+  const trip = trips.find((trip) => trip._id === tripID);
   console.log(trip);
   return (
     <div className="trip-details">
@@ -23,8 +23,10 @@ const TripDetails = ({ trips }) => {
       <h5>
         <span>Total Cost:</span> ${trip.totalCost}
       </h5>
+      <button>Edit</button>
+      <button onClick={() => handleDelete(trip._id)}>Delete</button>
     </div>
-  )
-}
+  );
+};
 
-export default TripDetails
+export default TripDetails;
