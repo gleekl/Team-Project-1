@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom'
 
 import "./App.css";
+import NavigationBar from './components/Nav/NavigationBar';
 import TripDetails from './components/TripDetails';
 import TripIndex from './components/TripIndex';
 
@@ -18,15 +19,18 @@ function App() {
   useEffect(() => {
     getTrips()
   }, [])
-
   return (
     <div className="App">
-      <Routes>
-        <Route path="/" element={trips && <TripIndex trips={trips} />} 
-        />
-        <Route path="/:tripID" element={trips && <TripDetails trips={trips} />} 
-        />
-      </Routes>
+      <NavigationBar />
+      <main>
+        <Routes>
+          <Route path="/" element={trips && <TripIndex trips={trips} />} 
+          />
+          <Route path="/:tripID" element={trips && <TripDetails trips={trips} />} 
+          />
+        </Routes>
+      </main>
+
     </div>
   ); 
 }
