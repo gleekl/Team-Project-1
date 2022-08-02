@@ -16,13 +16,13 @@ const EventDetails = (props) => {
         img src={props.event.image}
       />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography gutterBottom variant="h4" component="div">
             {props.event.title}
         </Typography>
         <Typography gutterBottom variant="h5" component="div">
             {props.event.country}
         </Typography>
-        <Typography variant="body3" color="text.secondary">
+        <Typography gutterBottom variant="h6" component="div">
             {props.event.city}
         </Typography>
         <Typography variant="body2" color="text.secondary">
