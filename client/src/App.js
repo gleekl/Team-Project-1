@@ -24,9 +24,13 @@ function App() {
       <NavigationBar />
       <main>
         <Routes>
-          <Route path="/" element={trips && <TripIndex trips={trips} />} 
+          <Route 
+            path="/" 
+            element={trips && <TripIndex trips={trips} />} 
           />
-          <Route path="/:tripID" element={trips && <TripDetails trips={trips} />} 
+          <Route 
+            path="/:tripID" 
+            element={trips && <TripDetails trips={trips} />} 
           />
         </Routes>
       </main>

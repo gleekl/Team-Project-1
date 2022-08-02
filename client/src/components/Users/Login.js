@@ -51,3 +51,5 @@ const Login = (props) => {
     </form>
   )
 }
+
+export default Login
