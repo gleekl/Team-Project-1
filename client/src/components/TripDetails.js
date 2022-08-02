@@ -1,9 +1,13 @@
-const { useParams } = require("react-router-dom");
+import { useParams } from "react-router-dom";
+import EventDetails from "./EventDetails";
 
 const TripDetails = ({ trips, handleDelete }) => {
   const { tripID } = useParams();
   const trip = trips.find((trip) => trip._id === tripID);
   console.log(trip);
+  const Events = trip.events.map((event) => {
+    return <EventDetails event={event} key={event._id} />;
+  });
   return (
     <div className="trip-details">
       <h3>Trip Details:</h3>
@@ -18,7 +22,7 @@ const TripDetails = ({ trips, handleDelete }) => {
         <span>End Date:</span> {trip.endDate}
       </h5>
       <h5>
-        <span>Events:</span> {trip.events}
+        <span>Events:</span> {Events}
       </h5>
       <h5>
         <span>Total Cost:</span> ${trip.totalCost}
