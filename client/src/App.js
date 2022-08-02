@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
-
 import "./App.css";
 import TripDetails from "./components/TripDetails";
 import TripIndex from "./components/TripIndex";
+import CreateTrip from "./components/CreateTrip";
 
 function App() {
   const [trips, setTrips] = useState(null);
@@ -31,6 +31,23 @@ function App() {
     navigate("/");
   };
 
+  const handleCreate = async (tripObj) => {
+    // if (tripObj.title.length <= 0) return;
+    const res = await fetch("http://localhost:3000/trips", {
+      method: "POST",
+      header: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(tripObj),
+    });
+    if (res.ok) {
+      const newTrip = await res.json();
+      setTrips([...trips, newTrip]);
+    } else {
+      console.log("error creating new trip");
+    }
+  };
+
   return (
     <div className="App">
       <Routes>
@@ -40,6 +57,10 @@ function App() {
           element={
             trips && <TripDetails trips={trips} handleDelete={handleDelete} />
           }
+        />
+        <Route
+          path="/newtrip"
+          element={trips && <CreateTrip handleCreate={handleCreate} />}
         />
         {/* <Route
           path="/:tripID/edit"
