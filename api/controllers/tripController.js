@@ -5,7 +5,7 @@ const Trip = require('../models/tripModel')
 
 // INDEX route
 tripsRouter.get('/', async (req, res) => {
-  const trips = await Trip.find({}).exec()
+  const trips = await Trip.find({}).populate('events').exec()
   console.log(trips);
 
   res.status(200).json(trips)
