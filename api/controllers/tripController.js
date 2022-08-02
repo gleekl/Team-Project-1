@@ -53,7 +53,6 @@ tripsRouter.put("/:tripID", async (req, res) => {
 // DELETE ROUTE - DELETE
 tripsRouter.delete("/:tripID", async (req, res) => {
   const deletedTrip = await Trip.findByIdAndDelete(req.params.tripID).exec();
-  console.log(deletedTrip);
   res.status(200).json(deletedTrip);
 });
 
