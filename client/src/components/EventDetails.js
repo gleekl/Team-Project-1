@@ -1,23 +1,43 @@
+import * as React from 'react';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+
 const EventDetails = (props) => {
     return(
-       <div className="event-details">
-        <h3>Event Title: </h3>
-        <h4>{props.event.title}</h4>
-        <h5>
-            <span>City: </span> {props.event.city}
-        </h5>
-        <h5>
-            <span>Country: </span> {props.event.author}
-        </h5>
-        <h5>
-            <span>Description: </span> {props.event.description}
-        </h5>
-        <h5>
-            <span>Cost: </span> ${props.event.cost}
-        </h5>
-        <img src={props.event.image} />
-        
-       </div> 
+  <div className='eventDetails-card'>
+    <Card sx={{ maxWidth: 345 }}>
+      <CardMedia
+        component="img"
+        height="140"
+        img src={props.event.image}
+      />
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="div">
+            {props.event.title}
+        </Typography>
+        <Typography gutterBottom variant="h5" component="div">
+            {props.event.country}
+        </Typography>
+        <Typography variant="body3" color="text.secondary">
+            {props.event.city}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+            ${props.event.cost}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+            {props.event.description}
+        </Typography>
+      </CardContent>
+      <CardActions>
+        <Button size="small">Edit</Button>
+        <Button size="small">Delete</Button>
+      </CardActions>
+    </Card>
+  </div>
     )
 }
 
