@@ -17,7 +17,7 @@ function App() {
   const navigate = useNavigate();
 
   const getTrips = async () => {
-    const url = "http://localhost:3000/trips";
+    const url = "/trips";
     const res = await fetch(url);
     const data = await res.json();
     setTrips(data);
@@ -45,7 +45,7 @@ function App() {
   }, []);
 
   const handleDelete = async (tripID) => {
-    await fetch(`http://localhost:3000/trips/${tripID}`, {
+    await fetch(`/trips/${tripID}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -57,7 +57,7 @@ function App() {
 
   const handleEventDelete = async (tripID, eventID) => {
     console.log("Delete this event", eventID);
-    await fetch(`http://localhost:3000/events/${eventID}`, {
+    await fetch(`/events/${eventID}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -80,7 +80,7 @@ function App() {
     for (let field in tripObj) {
       formData.append(field, tripObj[field]);
     }
-    const res = await fetch("http://localhost:3000/trips", {
+    const res = await fetch("/trips", {
       method: "POST",
       body: formData,
     });
