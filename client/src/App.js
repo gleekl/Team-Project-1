@@ -56,15 +56,16 @@ function App() {
   };
 
   const handleCreate = async (tripObj) => {
+    console.log(tripObj);
     const formData = new FormData();
     for (let field in tripObj) {
       formData.append(field, tripObj[field]);
     }
-
     const res = await fetch("http://localhost:3000/trips", {
       method: "POST",
       body: formData,
     });
+    console.log("this is formdata", formData);
     if (res.ok) {
       const newTrip = await res.json();
       setTrips([...trips, newTrip]);
