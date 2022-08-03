@@ -1,3 +1,45 @@
+* {
+  box-sizing: border-box;
+}
+
+/* Navigation Bar */
+nav {
+  background: rgb(55, 55, 55);
+  display: flex;
+  align-items: stretch;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+nav h1 {
+  font-size: inherit;
+  margin: 0;
+}
+
+nav a {
+  color: aliceblue;
+  padding: 20px;
+  font-size: 1.2em;
+  text-decoration: none;
+}
+
+nav a:hover {
+  background: grey;
+} 
+
+main {
+  margin-top: 100px;
+}
+
 .trip-card {
   margin: 30px;
+}
+
+.eventDetails-card {
+  margin: 30px
+}
+
+.trip-details {
+  margin: 15px
 }
