@@ -75,7 +75,6 @@ function App() {
   };
 
   const handleCreate = async (tripObj) => {
-    console.log(tripObj);
     const formData = new FormData();
     for (let field in tripObj) {
       formData.append(field, tripObj[field]);
@@ -84,7 +83,6 @@ function App() {
       method: "POST",
       body: formData,
     });
-    console.log("this is formdata", formData);
     if (res.ok) {
       const newTrip = await res.json();
       setTrips([...trips, newTrip]);
@@ -94,7 +92,25 @@ function App() {
     }
   };
 
-  const handleEdit = () => {};
+  const handleEdit = async (tripObj, tripID) => {
+    console.log("i am clicking on trip id", tripID);
+    console.log("this is the field for updating", tripObj);
+    const formData = new FormData();
+    for (let field in tripObj) {
+      formData.append(field, tripObj[field]);
+    }
+    const res = await fetch(`/trips/${tripID}`, {
+      method: "PUT",
+      body: formData,
+    });
+    if (res.ok) {
+      const newTrip = await res.json();
+      setTrips([...trips, newTrip]);
+      navigate(`/${tripID}`);
+    } else {
+      console.log("error editing trip ", tripID);
+    }
+  };
 
   return (
     <div className="App">
@@ -125,7 +141,9 @@ function App() {
           />
           <Route
             path="/:tripID/edit"
-            element={trips && <EditTrip handleEdit={handleEdit} />}
+            element={
+              trips && <EditTrip trips={trips} handleEdit={handleEdit} />
+            }
           />
           <Route
             path="/login"

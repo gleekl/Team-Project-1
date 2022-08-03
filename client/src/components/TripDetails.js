@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import EventDetails from "./EventDetails";
 import * as React from "react";
 import Card from "@mui/material/Card";
@@ -13,17 +13,19 @@ import Typography from "@mui/material/Typography";
 const TripDetails = ({ trips, handleDelete, handleEventDelete }) => {
   const { tripID } = useParams();
   const trip = trips.find((trip) => trip._id === tripID);
-  
+
   const eventList = trip.events.map((event) => {
     return (
       <EventDetails
         event={event}
         key={event._id}
-        handleEventDelete={() => {handleEventDelete(trip._id, event._id)}}
+        handleEventDelete={() => {
+          handleEventDelete(trip._id, event._id);
+        }}
       />
     );
   });
-  
+
   return (
     <div className="trip-details">
       <Card sx={{ maxWidth: 480 }}>
@@ -58,7 +60,9 @@ const TripDetails = ({ trips, handleDelete, handleEventDelete }) => {
             {trip.description}
           </Typography>
           <CardActions>
-            <Button size="small">Edit</Button>
+            <Button size="small">
+              <Link to={`/${trip._id}/edit`}>Edit</Link>
+            </Button>
             <Button size="small" onClick={() => handleDelete(trip._id)}>
               Delete
             </Button>

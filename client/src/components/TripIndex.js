@@ -28,8 +28,12 @@ const TripCard = ({ trip, handleDelete }) => {
           </CardContent>
         </Link>
         <CardActions>
-          <Button size="small">Edit</Button>
-          <Button size="small" onClick={() => handleDelete(trip._id)}>Delete</Button>
+          <Button size="small">
+            <Link to={`/${trip._id}/edit`}>Edit</Link>
+          </Button>
+          <Button size="small" onClick={() => handleDelete(trip._id)}>
+            Delete
+          </Button>
         </CardActions>
       </Card>
     </div>

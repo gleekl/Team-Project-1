@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const initialState = {
   author: "",
@@ -113,7 +114,9 @@ const CreateTrip = (props) => {
           <input type="submit" value="Upload" />
         </div>
         <button>Submit</button>
-        <button>Cancel</button>
+        <button>
+          <Link to={`/`}>Cancel</Link>
+        </button>
       </form>
     </>
   );
