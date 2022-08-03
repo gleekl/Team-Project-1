@@ -80,7 +80,7 @@ function App() {
       <NavigationBar />
       <main>
         <Routes>
-          <Route path="/" element={trips && <TripIndex trips={trips} />} />
+          <Route path="/" element={trips && <TripIndex trips={trips} handleDelete={handleDelete}/>} />
           <Route
             path="/:tripID"
             element={

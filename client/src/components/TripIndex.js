@@ -7,7 +7,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Link, useNavigate } from "react-router-dom";
 
-const TripCard = ({ trip }) => {
+const TripCard = ({ trip, handleDelete }) => {
   return (
     <div className="trip-card">
       <Card sx={{ maxWidth: 345 }}>
@@ -29,17 +29,17 @@ const TripCard = ({ trip }) => {
         </Link>
         <CardActions>
           <Button size="small">Edit</Button>
-          <Button size="small">Delete</Button>
+          <Button size="small" onClick={() => handleDelete(trip._id)}>Delete</Button>
         </CardActions>
       </Card>
     </div>
   );
 };
 
-const TripIndex = ({ trips }) => {
+const TripIndex = ({ trips, handleDelete }) => {
   const navigate = useNavigate();
   const tripList = trips.map((trip) => {
-    return <TripCard key={trip._id} trip={trip} />;
+    return <TripCard key={trip._id} trip={trip} handleDelete={handleDelete} />;
   });
 
   const navigateCreatePage = () => {
