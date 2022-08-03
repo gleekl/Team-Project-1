@@ -10,29 +10,20 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
-const TripDetails = ({ trips, handleDelete }) => {
+const TripDetails = ({ trips, handleDelete, handleEventDelete }) => {
   const { tripID } = useParams();
   const trip = trips.find((trip) => trip._id === tripID);
-  const [events, setEvents] = useState(trip.events);
-  const handleEventDelete = async (eventID) => {
-    console.log("Delete this event", eventID);
-    await fetch(`http://localhost:3000/events/${eventID}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    setEvents(events.filter((evt) => evt._id !== eventID));
-  };
-  const eventList = events.map((event) => {
+  
+  const eventList = trip.events.map((event) => {
     return (
       <EventDetails
         event={event}
         key={event._id}
-        handleEventDelete={handleEventDelete}
+        handleEventDelete={() => {handleEventDelete(trip._id, event._id)}}
       />
     );
   });
+  
   return (
     <div className="trip-details">
       <Card sx={{ maxWidth: 480 }}>
