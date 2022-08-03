@@ -1,20 +1,33 @@
-import { useParams } from "react-router-dom";
-import EventDetails from "./EventDetails";
-import * as React from "react";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
+import {useState} from 'react'
+
+import { useParams } from "react-router-dom"
+import EventDetails from './EventDetails'
+import * as React from 'react';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 
 const TripDetails = ({ trips, handleDelete }) => {
   const { tripID } = useParams();
   const trip = trips.find((trip) => trip._id === tripID);
   console.log(trip);
-  const events = trip.events.map((event) => {
-    return <EventDetails event={event} key={event._id} />;
-  });
+  const [events, setEvents] = useState(trip.events)
+  const handleEventDelete = async (eventID) => {
+    console.log('Delete this event', eventID);
+    await fetch (`http://localhost:3000/events/${eventID}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    setEvents(events.filter((evt) => evt._id !== eventID))
+  }
+  const eventList = events.map((event) => {
+    return <EventDetails event={event} key={event._id} handleEventDelete={handleEventDelete}/>
+  })
   return (
     <div className="trip-details">
       <Card sx={{ maxWidth: 480 }}>
@@ -56,7 +69,7 @@ const TripDetails = ({ trips, handleDelete }) => {
           </CardActions>
           <br />
           <Typography gutterBottom variant="h5" component="div">
-            Events {events}
+            Events {eventList}
           </Typography>
         </CardContent>
       </Card>

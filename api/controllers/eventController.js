@@ -11,9 +11,16 @@ eventRouter.get("/", async (req, res) => {
 });
 
 // SHOW route
-eventRouter.get("/:eventID", async (req, res) => {
-  const event = await Event.findById(req.params.eventID).exec();
-  res.status(200).json(event);
-});
+eventRouter.get('/:eventID', async (req, res) => {
+  const event = await Event.findById(req.params.eventID).populate('events').exec()
+  res.status(200).json(event)
+})
+
+
+//Delete Route
+eventRouter.delete('/:eventID', async (req, res) => {
+  const deleteEvent = await Event.findByIdAndRemove(req.params.eventID).exec()
+  res.status(200).json(deleteEvent)
+})
 
 module.exports = eventRouter;
