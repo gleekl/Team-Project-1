@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useNavigate } from 'react-router-dom'
 
 import "./App.css";
 import NavigationBar from './components/Nav/NavigationBar';
@@ -11,6 +11,9 @@ import Signup from './components/Users/Signup';
 
 function App() {
   const [trips, setTrips] = useState(null)
+  const [authorised, setAuthorised] = useState(null)
+
+  const navigate = useNavigate()
 
   const getTrips = async () => {
     const url = 'http://localhost:3000/trips'
@@ -19,10 +22,27 @@ function App() {
     setTrips(data)
   }
 
+  const handleAuthentication = (authed) => {
+    setAuthorised(authed)
+    navigate('/')
+  }
+
+  const handleLogout = () => {
+    setAuthorised(false)
+    navigate('/')
+  }
+
   useEffect(() => {
+    const checkIfLoggedIn = async () => {
+      const res = await fetch('/users/isauthorised')
+      const data = await res.json()
+      console.log(data.msg);
+      setAuthorised(data.authorised)
+    }
+    checkIfLoggedIn()
     getTrips()
   }, [])
-  
+
   return (
     <div className="App">
       <NavigationBar />
