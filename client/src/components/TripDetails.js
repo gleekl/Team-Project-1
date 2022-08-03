@@ -26,6 +26,9 @@ const TripDetails = ({ trips, handleDelete, handleEventDelete, handleCreateEvent
     );
   });
 
+  let strStartDate = trip.startDate.substring(0, 10)
+  let strEndDate = trip.endDate.substring(0, 10)
+
   const navigateCreateEventPage = () => {
     navigate("/newevent")
   }
@@ -47,10 +50,10 @@ const TripDetails = ({ trips, handleDelete, handleEventDelete, handleCreateEvent
             {trip.author}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Trip Start Date: {trip.startDate}
+            Trip Start Date: {strStartDate}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Trip End Date: {trip.endDate}
+            Trip End Date: {strEndDate}
           </Typography>
           <br />
           <Typography gutterBottom variant="h7" component="div">
@@ -58,7 +61,7 @@ const TripDetails = ({ trips, handleDelete, handleEventDelete, handleCreateEvent
           </Typography>
           <br />
           <Typography gutterBottom variant="h7" component="div">
-            What did you get upto?
+            What did you get up to?
           </Typography>
           <Typography variant="body2" color="text.secondary">
             {trip.description}

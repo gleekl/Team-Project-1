@@ -36,17 +36,6 @@ function App() {
     navigate("/");
   };
 
-  useEffect(() => {
-    const checkIfLoggedIn = async () => {
-      const res = await fetch("/users/isauthorised");
-      const data = await res.json();
-      console.log(data.msg);
-      setAuthorised(data.authorised);
-    };
-    checkIfLoggedIn();
-    getTrips();
-  }, []);
-
   const handleDelete = async (tripID) => {
     await fetch(`/trips/${tripID}`, {
       method: "DELETE",
@@ -116,6 +105,17 @@ function App() {
       console.log("Error creating new Event.");
     }
   };
+
+  useEffect(() => {
+    const checkIfLoggedIn = async () => {
+      const res = await fetch("/users/isauthorised");
+      const data = await res.json();
+      console.log(data.msg);
+      setAuthorised(data.authorised);
+    };
+    checkIfLoggedIn();
+    getTrips();
+  }, []);
 
   return (
     <div className="App">
