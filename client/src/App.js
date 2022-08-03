@@ -6,6 +6,7 @@ import NavigationBar from "./components/Nav/NavigationBar";
 import TripDetails from "./components/TripDetails";
 import TripIndex from "./components/TripIndex";
 import CreateTrip from "./components/CreateTrip";
+import CreateEvent from "./components/CreateEvent";
 import Login from "./components/Users/Login";
 import Logout from "./components/Users/Logout";
 import Signup from "./components/Users/Signup";
@@ -13,6 +14,7 @@ import ProtectedRoute from "./components/Protected/ProtectedRoute";
 
 function App() {
   const [trips, setTrips] = useState(null);
+  const [events, setEvents] = useState(null);
   const [authorised, setAuthorised] = useState(null);
 
   const navigate = useNavigate();
@@ -95,6 +97,26 @@ function App() {
     }
   };
 
+  const handleCreateEvent = async (eventObj) => {
+    console.log(eventObj);
+    const formData = new FormData();
+    for (let field in eventObj) {
+      formData.append(field, eventObj[field]);
+    }
+    const res = await fetch("/events", {
+      method: "POST",
+      body: formData,
+    });
+    console.log("This is the formData of", formData);
+    if (res.ok) {
+      const newEvent = await res.json();
+      setTrips([...events, newEvent]);
+      navigate("/");
+    } else {
+      console.log("Error creating new Event.");
+    }
+  };
+
   return (
     <div className="App">
       <NavigationBar authorised={authorised} />
@@ -102,17 +124,35 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={trips && <TripIndex trips={trips} handleDelete={handleDelete} />}
+            element={
+              trips && 
+              <TripIndex 
+                trips={trips} 
+                handleDelete={handleDelete} 
+                handleAuthentication={handleAuthentication} 
+                authorised={authorised}
+              />}
           />
           <Route
             path="/:tripID"
             element={
-              trips && <TripDetails trips={trips} handleDelete={handleDelete} handleEventDelete={handleEventDelete} />
+              trips && 
+              <TripDetails 
+                trips={trips} 
+                handleDelete={handleDelete} 
+                handleEventDelete={handleEventDelete} 
+                handleCreateEvent={handleCreateEvent} 
+                authorised={authorised}
+              />
             }
           />
           <Route
             path="/newtrip"
             element={trips && <CreateTrip handleCreate={handleCreate} />}
+          />
+          <Route
+            path="/newevent"
+            element={events && <CreateEvent handleCreateEvent={handleCreateEvent} />}
           />
           <Route path="/login" element={<Login handleLogin={handleAuthentication} />} />
           <Route path="/logout" element={<Logout handleLogout={handleLogout} />} />
