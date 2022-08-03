@@ -6,6 +6,8 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
+
+
 const EventDetails = (props) => {
     return(
   <div className='eventDetails-card'>
@@ -34,7 +36,7 @@ const EventDetails = (props) => {
       </CardContent>
       <CardActions>
         <Button size="small">Edit</Button>
-        <Button size="small">Delete</Button>
+        <Button size="small" onClick={() => props.handleEventDelete(props.event._id)}>Delete</Button>
       </CardActions>
     </Card>
   </div>

@@ -1,3 +1,5 @@
+import {useState} from 'react'
+
 import { useParams } from "react-router-dom"
 import EventDetails from './EventDetails'
 import * as React from 'react';
@@ -12,8 +14,19 @@ const TripDetails = ({ trips }) => {
   const { tripID } = useParams()
   const trip = trips.find((trip) => trip._id === tripID)
   console.log(trip);
-  const events = trip.events.map((event) => {
-    return <EventDetails event={event} key={event._id} />
+  const [events, setEvents] = useState(trip.events)
+  const handleEventDelete = async (eventID) => {
+    console.log('Delete this event', eventID);
+    await fetch (`http://localhost:3000/events/${eventID}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    setEvents(events.filter((evt) => evt._id !== eventID))
+  }
+  const eventList = events.map((event) => {
+    return <EventDetails event={event} key={event._id} handleEventDelete={handleEventDelete}/>
   })
   return (
 
@@ -55,7 +68,7 @@ const TripDetails = ({ trips }) => {
           </CardActions>
           <br />
           <Typography gutterBottom variant="h5" component="div">
-            Events {events}
+            Events {eventList}
           </Typography>
         </CardContent>
       </Card>
