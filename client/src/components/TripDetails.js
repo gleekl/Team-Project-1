@@ -26,8 +26,8 @@ const TripDetails = ({ trips, handleDelete, handleEventDelete, handleCreateEvent
     );
   });
 
-  let strStartDate = trip.startDate.substring(0, 10)
-  let strEndDate = trip.endDate.substring(0, 10)
+  let strStartDate = trip.startDate.substring(0, 10).split('-').reverse().join('-')
+  let strEndDate = trip.endDate.substring(0, 10).split('-').reverse().join('-')
 
   const navigateCreateEventPage = () => {
     navigate("/newevent")
