@@ -16,7 +16,7 @@ const TripDetails = ({ trips, handleDelete }) => {
   const [events, setEvents] = useState(trip.events);
   const handleEventDelete = async (eventID) => {
     console.log("Delete this event", eventID);
-    await fetch(`http://localhost:3000/events/${eventID}`, {
+    await fetch(`/events/${eventID}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
