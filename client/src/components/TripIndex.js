@@ -49,11 +49,11 @@ const TripIndex = ({ trips, handleDelete, authorised }) => {
   };
 
   return (
-    <>
+    <div className="trip-index">
       <h1>Test TripComponent.</h1>
       {authorised && <button onClick={navigateCreatePage}>Create New Trip</button>}
       {tripList}
-    </>
+    </div>
   );
 };
 
