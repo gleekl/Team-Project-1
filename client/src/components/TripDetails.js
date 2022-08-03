@@ -4,7 +4,6 @@ import EventDetails from "./EventDetails";
 const TripDetails = ({ trips, handleDelete }) => {
   const { tripID } = useParams();
   const trip = trips.find((trip) => trip._id === tripID);
-  console.log(trip);
   const Events = trip.events.map((event) => {
     return <EventDetails event={event} key={event._id} />;
   });

@@ -32,17 +32,19 @@ function App() {
   };
 
   const handleCreate = async (tripObj) => {
-    // if (tripObj.title.length <= 0) return;
+    const formData = new FormData();
+    for (let field in tripObj) {
+      formData.append(field, tripObj[field]);
+    }
+
     const res = await fetch("http://localhost:3000/trips", {
       method: "POST",
-      header: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(tripObj),
+      body: formData,
     });
     if (res.ok) {
       const newTrip = await res.json();
       setTrips([...trips, newTrip]);
+      navigate("/");
     } else {
       console.log("error creating new trip");
     }

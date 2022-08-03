@@ -38,7 +38,6 @@ const TripCard = ({ trip }) => {
 
 const TripIndex = ({ trips }) => {
   const navigate = useNavigate();
-  console.log(trips);
   const tripList = trips.map((trip) => {
     return <TripCard key={trip._id} trip={trip} />;
   });

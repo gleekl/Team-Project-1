@@ -3,18 +3,23 @@ import { useState } from "react";
 const initialState = {
   author: "",
   title: "",
-  startDate: undefined,
-  endDate: undefined,
-  totalCost: undefined,
+  startDate: "",
+  endDate: "",
+  totalCost: 0,
   description: "",
-  image: undefined,
 };
 
 const CreateTrip = (props) => {
   const [fields, setFields] = useState(initialState);
+  const [image, setImage] = useState(null);
+
+  const handleImageChange = (e) => {
+    setImage(e.target.files[0]);
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
     const updatedFields = {
       ...fields,
       [name]: value,
@@ -24,9 +29,9 @@ const CreateTrip = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.handleCreate(fields);
-    console.log(fields);
+    props.handleCreate({ ...fields, image: image });
     setFields(initialState);
+    setImage(null);
   };
 
   return (
@@ -97,13 +102,12 @@ const CreateTrip = (props) => {
           />
         </div>
         <div>
-          <label htmlFor="photo">Upload a cover photo for your trip!</label>
+          <label htmlFor="image">Upload a cover photo for your trip!</label>
           <br />
           <input
-            name="photo"
-            // value={fields.image}
-            // onChange={handleChange}
-            id="photo"
+            name="image"
+            onChange={handleImageChange}
+            id="image"
             type="file"
           />
           <input type="submit" value="Upload" />

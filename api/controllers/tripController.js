@@ -3,11 +3,11 @@ const express = require("express");
 const tripsRouter = express.Router();
 const Trip = require("../models/tripModel");
 
+const upload = require("../middlewares/upload");
+
 // INDEX route
 tripsRouter.get("/", async (req, res) => {
   const trips = await Trip.find({}).populate("events").exec();
-  console.log(trips);
-
   res.status(200).json(trips);
 });
 
@@ -18,10 +18,12 @@ tripsRouter.get("/:tripID", async (req, res) => {
 });
 
 // CREATE NEW ROUTE - POST
-tripsRouter.post("/", async (req, res) => {
+tripsRouter.post("/", upload.single("image"), async (req, res) => {
   try {
-    const newTrip = await Trip.create(req.body);
-    console.log(newTrip);
+    // add image to req.body
+    // image: req.file
+    const field = { ...req.body, image: req.file.path };
+    const newTrip = await Trip.create(field);
     res.status(200).json(newTrip);
   } catch (error) {
     res.status(500).json({ errorMessage: error.Message });
@@ -31,7 +33,7 @@ tripsRouter.post("/", async (req, res) => {
 });
 
 // UPDATE ROUTE - PUT
-tripsRouter.put("/:tripID", async (req, res) => {
+tripsRouter.put("/:tripID", upload.single("image"), async (req, res) => {
   try {
     const updatedTrip = await Trip.findByIdAndUpdate(
       req.params.tripID,
