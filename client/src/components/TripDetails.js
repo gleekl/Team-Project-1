@@ -10,9 +10,9 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-const TripDetails = ({ trips }) => {
-  const { tripID } = useParams()
-  const trip = trips.find((trip) => trip._id === tripID)
+const TripDetails = ({ trips, handleDelete }) => {
+  const { tripID } = useParams();
+  const trip = trips.find((trip) => trip._id === tripID);
   console.log(trip);
   const [events, setEvents] = useState(trip.events)
   const handleEventDelete = async (eventID) => {
@@ -29,7 +29,6 @@ const TripDetails = ({ trips }) => {
     return <EventDetails event={event} key={event._id} handleEventDelete={handleEventDelete}/>
   })
   return (
-
     <div className="trip-details">
       <Card sx={{ maxWidth: 480 }}>
         <CardMedia
@@ -64,7 +63,9 @@ const TripDetails = ({ trips }) => {
           </Typography>
           <CardActions>
             <Button size="small">Edit</Button>
-            <Button size="small">Delete</Button>
+            <Button size="small" onClick={() => handleDelete(trip._id)}>
+              Delete
+            </Button>
           </CardActions>
           <br />
           <Typography gutterBottom variant="h5" component="div">
@@ -73,7 +74,7 @@ const TripDetails = ({ trips }) => {
         </CardContent>
       </Card>
     </div>
-  )
-}
+  );
+};
 
-export default TripDetails
+export default TripDetails;
