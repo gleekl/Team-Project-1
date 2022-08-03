@@ -1,15 +1,15 @@
-import * as React from 'react';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import { Link } from 'react-router-dom';
+import * as React from "react";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import { Link, useNavigate } from "react-router-dom";
 
 const TripCard = ({ trip }) => {
   return (
-    <div className='trip-card'>
+    <div className="trip-card">
       <Card sx={{ maxWidth: 345 }}>
         <Link to={trip._id}>
           <CardMedia
@@ -33,23 +33,26 @@ const TripCard = ({ trip }) => {
         </CardActions>
       </Card>
     </div>
-  )
-}
+  );
+};
 
 const TripIndex = ({ trips }) => {
-  console.log(trips);
+  const navigate = useNavigate();
   const tripList = trips.map((trip) => {
-    return (
-      <TripCard key={trip._id} trip={trip} />
-    )
-  })
+    return <TripCard key={trip._id} trip={trip} />;
+  });
+
+  const navigateCreatePage = () => {
+    navigate("/newtrip");
+  };
 
   return (
     <>
       <h1>Test TripComponent.</h1>
+      <button onClick={navigateCreatePage}>Create New Trip</button>
       {tripList}
     </>
-  )
-}
+  );
+};
 
-export default TripIndex
+export default TripIndex;
