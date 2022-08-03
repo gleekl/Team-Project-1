@@ -6,6 +6,7 @@ import NavigationBar from "./components/Nav/NavigationBar";
 import TripDetails from "./components/TripDetails";
 import TripIndex from "./components/TripIndex";
 import CreateTrip from "./components/CreateTrip";
+import EditTrip from "./components/EditTrip";
 import Login from "./components/Users/Login";
 import Logout from "./components/Users/Logout";
 import Signup from "./components/Users/Signup";
@@ -75,6 +76,12 @@ function App() {
     }
   };
 
+  const handleEdit = async (fields, tripID) => {
+    console.log("now I am editing tripID", tripID);
+    console.log("the fields passed in is ", fields);
+    // const res = await fetch(`http://localhost:3000/trips/${tripID}`)
+  };
+
   return (
     <div className="App">
       <NavigationBar />
@@ -90,6 +97,10 @@ function App() {
           <Route
             path="/newtrip"
             element={trips && <CreateTrip handleCreate={handleCreate} />}
+          />
+          <Route
+            path="/:tripID/edit"
+            element={trips && <EditTrip handleEdit={handleEdit} />}
           />
           <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Logout />} />
