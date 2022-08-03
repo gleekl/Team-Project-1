@@ -102,7 +102,7 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={trips && <TripIndex trips={trips} handleDelete={handleDelete} />}
+            element={trips && <TripIndex trips={trips} handleDelete={handleDelete} handleAuthentication={handleAuthentication} />}
           />
           <Route
             path="/:tripID"

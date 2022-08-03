@@ -7,7 +7,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Link, useNavigate } from "react-router-dom";
 
-const TripCard = ({ trip, handleDelete }) => {
+const TripCard = ({ trip, handleDelete, authorised }) => {
   return (
     <div className="trip-card">
       <Card sx={{ maxWidth: 345 }}>
@@ -15,7 +15,7 @@ const TripCard = ({ trip, handleDelete }) => {
           <CardMedia
             component="img"
             alt={trip.title}
-            height="140"
+            height="300"
             image={trip.image}
           />
           <CardContent>
@@ -27,10 +27,12 @@ const TripCard = ({ trip, handleDelete }) => {
             </Typography>
           </CardContent>
         </Link>
-        <CardActions>
-          <Button size="small">Edit</Button>
-          <Button size="small" onClick={() => handleDelete(trip._id)}>Delete</Button>
-        </CardActions>
+        {!authorised &&
+          <CardActions>
+            <Button size="small">Edit</Button>
+            <Button size="small" onClick={() => handleDelete(trip._id)}>Delete</Button>
+          </CardActions>
+        }
       </Card>
     </div>
   );
