@@ -9,6 +9,7 @@ import CreateTrip from "./components/CreateTrip";
 import Login from "./components/Users/Login";
 import Logout from "./components/Users/Logout";
 import Signup from "./components/Users/Signup";
+import ProtectedRoute from "./components/Protected/ProtectedRoute";
 
 function App() {
   const [trips, setTrips] = useState(null);
@@ -63,7 +64,7 @@ function App() {
         "Content-Type": "application/json",
       },
     });
-    let updatedTrip = {...trips.find((trip) => trip._id === tripID)}
+    let updatedTrip = { ...trips.find((trip) => trip._id === tripID) }
     updatedTrip.events = updatedTrip.events.filter((event) => event._id !== eventID)
     console.log(updatedTrip);
     const index = trips.findIndex((trip) => trip._id === tripID)
@@ -94,14 +95,15 @@ function App() {
     }
   };
 
-  
-
   return (
     <div className="App">
-      <NavigationBar />
+      <NavigationBar authorised={authorised} />
       <main>
         <Routes>
-          <Route path="/" element={trips && <TripIndex trips={trips} handleDelete={handleDelete}/>} />
+          <Route
+            path="/"
+            element={trips && <TripIndex trips={trips} handleDelete={handleDelete} />}
+          />
           <Route
             path="/:tripID"
             element={
@@ -112,9 +114,9 @@ function App() {
             path="/newtrip"
             element={trips && <CreateTrip handleCreate={handleCreate} />}
           />
-          <Route path="/login" element={<Login />} />
-          <Route path="/logout" element={<Logout />} />
-          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login handleLogin={handleAuthentication} />} />
+          <Route path="/logout" element={<Logout handleLogout={handleLogout} />} />
+          <Route path="/signup" element={<Signup handleSignup={handleAuthentication} />} />
         </Routes>
       </main>
     </div>
