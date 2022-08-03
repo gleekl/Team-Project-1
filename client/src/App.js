@@ -18,7 +18,7 @@ function App() {
   const navigate = useNavigate();
 
   const getTrips = async () => {
-    const url = "http://localhost:3000/trips";
+    const url = "/trips";
     const res = await fetch(url);
     const data = await res.json();
     setTrips(data);
@@ -46,7 +46,7 @@ function App() {
   }, []);
 
   const handleDelete = async (tripID) => {
-    await fetch(`http://localhost:3000/trips/${tripID}`, {
+    await fetch(`/trips/${tripID}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -56,13 +56,30 @@ function App() {
     navigate("/");
   };
 
+  const handleEventDelete = async (tripID, eventID) => {
+    console.log("Delete this event", eventID);
+    await fetch(`/events/${eventID}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    let updatedTrip = { ...trips.find((trip) => trip._id === tripID) };
+    updatedTrip.events = updatedTrip.events.filter(
+      (event) => event._id !== eventID
+    );
+    console.log(updatedTrip);
+    const index = trips.findIndex((trip) => trip._id === tripID);
+    setTrips([...trips.slice(0, index), updatedTrip, ...trips.slice(index)]);
+  };
+
   const handleCreate = async (tripObj) => {
     console.log(tripObj);
     const formData = new FormData();
     for (let field in tripObj) {
       formData.append(field, tripObj[field]);
     }
-    const res = await fetch("http://localhost:3000/trips", {
+    const res = await fetch("/trips", {
       method: "POST",
       body: formData,
     });
@@ -76,22 +93,29 @@ function App() {
     }
   };
 
-  const handleEdit = async (fields, tripID) => {
-    console.log("now I am editing tripID", tripID);
-    console.log("the fields passed in is ", fields);
-    // const res = await fetch(`http://localhost:3000/trips/${tripID}`)
-  };
+  const handleEdit = () => {};
 
   return (
     <div className="App">
       <NavigationBar />
       <main>
         <Routes>
-          <Route path="/" element={trips && <TripIndex trips={trips} />} />
+          <Route
+            path="/"
+            element={
+              trips && <TripIndex trips={trips} handleDelete={handleDelete} />
+            }
+          />
           <Route
             path="/:tripID"
             element={
-              trips && <TripDetails trips={trips} handleDelete={handleDelete} />
+              trips && (
+                <TripDetails
+                  trips={trips}
+                  handleDelete={handleDelete}
+                  handleEventDelete={handleEventDelete}
+                />
+              )
             }
           />
           <Route
