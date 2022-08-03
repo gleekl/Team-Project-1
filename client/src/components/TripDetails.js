@@ -1,6 +1,5 @@
 import { useState } from "react";
-
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import EventDetails from "./EventDetails";
 import * as React from "react";
 import Card from "@mui/material/Card";
@@ -10,20 +9,27 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
-const TripDetails = ({ trips, handleDelete, handleEventDelete }) => {
+const TripDetails = ({ trips, handleDelete, handleEventDelete, handleCreateEvent, authorised }) => {
   const { tripID } = useParams();
+  const navigate = useNavigate();
+
   const trip = trips.find((trip) => trip._id === tripID);
-  
+
   const eventList = trip.events.map((event) => {
     return (
       <EventDetails
         event={event}
         key={event._id}
-        handleEventDelete={() => {handleEventDelete(trip._id, event._id)}}
+        handleEventDelete={() => { handleEventDelete(trip._id, event._id) }}
+        authorised={authorised}
       />
     );
   });
-  
+
+  const navigateCreateEventPage = () => {
+    navigate("/newevent")
+  }
+
   return (
     <div className="trip-details">
       <Card sx={{ maxWidth: 480 }}>
@@ -57,16 +63,22 @@ const TripDetails = ({ trips, handleDelete, handleEventDelete }) => {
           <Typography variant="body2" color="text.secondary">
             {trip.description}
           </Typography>
-          <CardActions>
-            <Button size="small">Edit</Button>
-            <Button size="small" onClick={() => handleDelete(trip._id)}>
-              Delete
-            </Button>
-          </CardActions>
+          {authorised &&
+            <CardActions>
+              <Button size="small">Edit</Button>
+              <Button size="small" onClick={() => handleDelete(trip._id)}>
+                Delete
+              </Button>
+            </CardActions>
+          }
           <br />
           <Typography gutterBottom variant="h5" component="div">
-            Events {eventList}
+            Events
           </Typography>
+          {authorised &&
+            <Button onClick={navigateCreateEventPage} size="small">Add a new event</Button>
+          }
+          {eventList}
         </CardContent>
       </Card>
     </div>

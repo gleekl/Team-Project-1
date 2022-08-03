@@ -7,7 +7,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Link, useNavigate } from "react-router-dom";
 
-const TripCard = ({ trip, handleDelete }) => {
+const TripCard = ({ trip, handleDelete, authorised }) => {
   return (
     <div className="trip-card">
       <Card sx={{ maxWidth: 345 }}>
@@ -15,7 +15,7 @@ const TripCard = ({ trip, handleDelete }) => {
           <CardMedia
             component="img"
             alt={trip.title}
-            height="140"
+            height="300"
             image={trip.image}
           />
           <CardContent>
@@ -27,19 +27,21 @@ const TripCard = ({ trip, handleDelete }) => {
             </Typography>
           </CardContent>
         </Link>
-        <CardActions>
-          <Button size="small">Edit</Button>
-          <Button size="small" onClick={() => handleDelete(trip._id)}>Delete</Button>
-        </CardActions>
+        {authorised &&
+          <CardActions>
+            <Button size="small">Edit</Button>
+            <Button size="small" onClick={() => handleDelete(trip._id)}>Delete</Button>
+          </CardActions>
+        }
       </Card>
     </div>
   );
 };
 
-const TripIndex = ({ trips, handleDelete }) => {
+const TripIndex = ({ trips, handleDelete, authorised }) => {
   const navigate = useNavigate();
   const tripList = trips.map((trip) => {
-    return <TripCard key={trip._id} trip={trip} handleDelete={handleDelete} />;
+    return <TripCard key={trip._id} trip={trip} handleDelete={handleDelete} authorised={authorised} />;
   });
 
   const navigateCreatePage = () => {
@@ -49,7 +51,7 @@ const TripIndex = ({ trips, handleDelete }) => {
   return (
     <>
       <h1>Test TripComponent.</h1>
-      <button onClick={navigateCreatePage}>Create New Trip</button>
+      {authorised && <button onClick={navigateCreatePage}>Create New Trip</button>}
       {tripList}
     </>
   );

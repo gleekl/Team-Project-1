@@ -1,7 +1,7 @@
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@mui/material"
 import { useState } from "react"
 
-const Logout = () => {
+const Logout = ({ handleLogout }) => {
   const [open, setOpen] = useState(false)
 
   const handleClickOpen = () => {
@@ -25,10 +25,10 @@ const Logout = () => {
         open={open}
         onClose={handleClose}
       >
-        <DialogTitle id="alert-dialog-title">{"Log out?"}</DialogTitle>
+        <DialogTitle id="alert-dialog-title">{"Are you sure you wish to log out?"}</DialogTitle>
         <DialogActions>
-          <Button onClick={handleClose}>Disagree</Button>
-          <Button onClick={handleClose} autoFocus>Agree</Button>
+          <Button onClick={handleLogout} variant="contained" autoFocus>Yes, log out</Button>
+          <Button onClick={handleClose}>Cancel</Button>
         </DialogActions>
       </Dialog>
     </div>
