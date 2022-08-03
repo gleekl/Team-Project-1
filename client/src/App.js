@@ -55,6 +55,25 @@ function App() {
     navigate("/");
   };
 
+  const handleEventDelete = async (tripID, eventID) => {
+    console.log("Delete this event", eventID);
+    await fetch(`http://localhost:3000/events/${eventID}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    let updatedTrip = {...trips.find((trip) => trip._id === tripID)}
+    updatedTrip.events = updatedTrip.events.filter((event) => event._id !== eventID)
+    console.log(updatedTrip);
+    const index = trips.findIndex((trip) => trip._id === tripID)
+    setTrips([
+      ...trips.slice(0, index),
+      updatedTrip,
+      ...trips.slice(index)
+    ])
+  };
+
   const handleCreate = async (tripObj) => {
     console.log(tripObj);
     const formData = new FormData();
@@ -75,6 +94,8 @@ function App() {
     }
   };
 
+  
+
   return (
     <div className="App">
       <NavigationBar />
@@ -84,7 +105,7 @@ function App() {
           <Route
             path="/:tripID"
             element={
-              trips && <TripDetails trips={trips} handleDelete={handleDelete} />
+              trips && <TripDetails trips={trips} handleDelete={handleDelete} handleEventDelete={handleEventDelete} />
             }
           />
           <Route
