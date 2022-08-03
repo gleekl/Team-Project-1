@@ -15,7 +15,8 @@ const EventDetails = (props) => {
       <CardMedia
         component="img"
         height="140"
-        img src={props.event.image}
+        image={props.event.image}
+        alt={props.event.title}
       />
       <CardContent>
         <Typography gutterBottom variant="h4" component="div">
@@ -36,7 +37,7 @@ const EventDetails = (props) => {
       </CardContent>
       <CardActions>
         <Button size="small">Edit</Button>
-        <Button size="small" onClick={() => props.handleEventDelete(props.event._id)}>Delete</Button>
+        <Button size="small" onClick={props.handleEventDelete}>Delete</Button>
       </CardActions>
     </Card>
   </div>
