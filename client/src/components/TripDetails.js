@@ -1,6 +1,5 @@
 import { useState } from "react";
-
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import EventDetails from "./EventDetails";
 import * as React from "react";
 import Card from "@mui/material/Card";
@@ -10,8 +9,10 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
-const TripDetails = ({ trips, handleDelete, handleEventDelete }) => {
+const TripDetails = ({ trips, handleDelete, handleEventDelete, handleCreateEvent }) => {
   const { tripID } = useParams();
+  const navigate = useNavigate();
+
   const trip = trips.find((trip) => trip._id === tripID);
   
   const eventList = trip.events.map((event) => {
@@ -23,6 +24,10 @@ const TripDetails = ({ trips, handleDelete, handleEventDelete }) => {
       />
     );
   });
+
+  const navigateCreateEventPage = () => {
+    navigate("/newevent")
+  }
   
   return (
     <div className="trip-details">
@@ -65,8 +70,10 @@ const TripDetails = ({ trips, handleDelete, handleEventDelete }) => {
           </CardActions>
           <br />
           <Typography gutterBottom variant="h5" component="div">
-            Events {eventList}
+            Events 
           </Typography>
+          <Button onClick={navigateCreateEventPage} size="small">Add a new event</Button>
+          {eventList}
         </CardContent>
       </Card>
     </div>

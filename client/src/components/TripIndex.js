@@ -27,7 +27,7 @@ const TripCard = ({ trip, handleDelete, authorised }) => {
             </Typography>
           </CardContent>
         </Link>
-        {!authorised &&
+        {authorised &&
           <CardActions>
             <Button size="small">Edit</Button>
             <Button size="small" onClick={() => handleDelete(trip._id)}>Delete</Button>
@@ -38,10 +38,10 @@ const TripCard = ({ trip, handleDelete, authorised }) => {
   );
 };
 
-const TripIndex = ({ trips, handleDelete }) => {
+const TripIndex = ({ trips, handleDelete, authorised }) => {
   const navigate = useNavigate();
   const tripList = trips.map((trip) => {
-    return <TripCard key={trip._id} trip={trip} handleDelete={handleDelete} />;
+    return <TripCard key={trip._id} trip={trip} handleDelete={handleDelete} authorised={authorised} />;
   });
 
   const navigateCreatePage = () => {
@@ -51,7 +51,7 @@ const TripIndex = ({ trips, handleDelete }) => {
   return (
     <>
       <h1>Test TripComponent.</h1>
-      <button onClick={navigateCreatePage}>Create New Trip</button>
+      {authorised && <button onClick={navigateCreatePage}>Create New Trip</button>}
       {tripList}
     </>
   );
