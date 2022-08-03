@@ -10,6 +10,7 @@ import EditTrip from "./components/EditTrip";
 import Login from "./components/Users/Login";
 import Logout from "./components/Users/Logout";
 import Signup from "./components/Users/Signup";
+import ProtectedRoute from "./components/Protected/ProtectedRoute";
 
 function App() {
   const [trips, setTrips] = useState(null);
@@ -97,7 +98,7 @@ function App() {
 
   return (
     <div className="App">
-      <NavigationBar />
+      <NavigationBar authorised={authorised} />
       <main>
         <Routes>
           <Route
@@ -126,9 +127,18 @@ function App() {
             path="/:tripID/edit"
             element={trips && <EditTrip handleEdit={handleEdit} />}
           />
-          <Route path="/login" element={<Login />} />
-          <Route path="/logout" element={<Logout />} />
-          <Route path="/signup" element={<Signup />} />
+          <Route
+            path="/login"
+            element={<Login handleLogin={handleAuthentication} />}
+          />
+          <Route
+            path="/logout"
+            element={<Logout handleLogout={handleLogout} />}
+          />
+          <Route
+            path="/signup"
+            element={<Signup handleSignup={handleAuthentication} />}
+          />
         </Routes>
       </main>
     </div>
