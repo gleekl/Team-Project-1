@@ -27,6 +27,13 @@ function App() {
     setTrips(data);
   };
 
+  const getEvents = async () => {
+    const url = "/trips";
+    const res = await fetch(url);
+    const data = await res.json();
+    setEvents(data);
+  };
+
   const handleAuthentication = (authed) => {
     setAuthorised(authed);
     navigate("/");
@@ -82,20 +89,21 @@ function App() {
     }
   };
 
-  const handleCreateEvent = async (eventObj) => {
-    console.log(eventObj);
+  const handleCreateEvent = async (eventObj, tripID) => {
     const formData = new FormData();
     for (let field in eventObj) {
       formData.append(field, eventObj[field]);
     }
-    const res = await fetch("/events", {
+    const res = await fetch(`/events/${tripID}`, {
       method: "POST",
       body: formData,
     });
     console.log("This is the formData of", formData);
     if (res.ok) {
-      const newEvent = await res.json();
-      setTrips([...events, newEvent]);
+      const newTrip = await res.json();
+      const index = trips.findIndex((trip) => trip._id === tripID)
+      setTrips([...trips.slice(0, index), newTrip, ...trips.slice(index + 1)]);
+      // Need to redirect to the parent Trip
       navigate("/");
     } else {
       console.log("Error creating new Event.");
@@ -122,6 +130,26 @@ function App() {
     }
   };
 
+  const handleEditEvent = async (eventObj, eventID) => {
+    console.log("EventID selected,", eventID);
+    console.log("this is the field for updating", eventObj);
+    const formData = new FormData();
+    for (let field in eventObj) {
+      formData.append(field, eventObj[field]);
+    }
+    const res = await fetch(`/events/${eventID}`, {
+      method: "PUT",
+      body: formData,
+    });
+    if (res.ok) {
+      const newEvent = await res.json();
+      setTrips([...trips, newEvent]);
+      navigate(`/${eventID}`);
+    } else {
+      console.log("Error editing event ", eventID);
+    }
+  };
+
   useEffect(() => {
     const checkIfLoggedIn = async () => {
       const res = await fetch("/users/isauthorised");
@@ -131,6 +159,7 @@ function App() {
     };
     checkIfLoggedIn();
     getTrips();
+    getEvents();
   }, []);
 
   return (
@@ -170,7 +199,7 @@ function App() {
             element={trips && <CreateTrip handleCreate={handleCreate} />}
           />
           <Route
-            path="/newevent"
+            path="/:tripID/newevent"
             element={
               events && <CreateEvent handleCreateEvent={handleCreateEvent} />
             }

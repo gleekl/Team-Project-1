@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 
 const initialState = {
   title: "",
@@ -11,6 +12,8 @@ const initialState = {
 const CreateEvent = (props) => {
   const [fields, setFields] = useState(initialState);
   const [image, setImage] = useState(null);
+
+  const { tripID } = useParams()
 
   const handleImageChange = (e) => {
     setImage(e.target.files[0]);
@@ -28,7 +31,7 @@ const CreateEvent = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.handleCreate({ ...fields, image: image });
+    props.handleCreateEvent({ ...fields, image: image }, tripID);
     setFields(initialState);
     setImage(null);
   };
@@ -59,7 +62,7 @@ const CreateEvent = (props) => {
           />
         </div>
         <div>
-          <label htmlFor="city">city</label>
+          <label htmlFor="city">City</label>
           <input
             name="city"
             value={fields.city}
