@@ -57,7 +57,7 @@ userRouter.post('/login', async (req, res) => {
   else {
     req.session.currentUser = user
     res.status(200).json({
-      msg: 'You have logged in successfully.',
+      msg: 'You have successfully logged in.',
       authorised: true
     })
   }
@@ -67,7 +67,7 @@ userRouter.post('/login', async (req, res) => {
 userRouter.post('/logout', (req, res) => {
   req.session.destroy(() => {
     res.status(200).json({
-      msg: 'You have logged out.'
+      msg: 'You have successfully logged out.'
     })
   })
 })
