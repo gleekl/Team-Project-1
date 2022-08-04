@@ -182,10 +182,9 @@ const CreateTrip = (props) => {
             />
           </Box>
         </div>
+        <br />
         <div>
-          <label htmlFor="image">Upload a cover photo for your trip!</label>
-          <br />
-          <br />
+          <h4><label htmlFor="image">Upload a cover photo for your trip!</label></h4>
           {/* <Button variant="contained" component='label'>Upload Photo */}
             <input 
               name="image"
