@@ -1,3 +1,4 @@
+import { Link, useNavigate } from "react-router-dom";
 import * as React from "react";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -6,21 +7,9 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
-import { Link, useNavigate } from "react-router-dom";
-
-import AppBar from "@mui/material/AppBar";
-
-import CameraIcon from "@mui/icons-material/PhotoCamera";
-
-import CssBaseline from "@mui/material/CssBaseline";
 import Grid from "@mui/material/Grid";
-
 import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-
 import Container from "@mui/material/Container";
-
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 const TripCard = ({ trip, handleDelete, authorised }) => {
   const navigate = useNavigate();
