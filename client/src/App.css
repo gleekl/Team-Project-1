@@ -45,14 +45,32 @@ main {
   margin: 15px
 }
 
-.trip-form {
+/* .trip-form {
   margin: 30px;
-}
-
-.trip-heading {
-  margin-left: 30px;
-}
+} */
 
 .index-heading-button {
   margin-left: 30px;
+}
+
+.trip-div {
+  /* text-align: center; */
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+
+.button {
+  display: flex;
+  /* justify-content: center; */
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.trip-heading {
+  margin-left: 5px;
+}
+
+.form-padding{
+  margin-left: 10px
 }
