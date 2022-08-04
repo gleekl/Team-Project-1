@@ -5,6 +5,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import Stack from '@mui/material/Stack';
 import { Link, useNavigate } from "react-router-dom";
 
 const TripCard = ({ trip, handleDelete, authorised }) => {
@@ -67,13 +68,19 @@ const TripIndex = ({ trips, handleDelete, authorised }) => {
 
   return (
     <div className="trip-index">
-      <h1>Test TripComponent.</h1>
-      {authorised && (
-        <button onClick={navigateCreatePage}>Create New Trip</button>
-      )}
-      {tripList}
+      <div className="index-heading-button">
+        <h1>Here are all your Trips!</h1>
+        {authorised && (
+          <Stack spacing={2} direction="row">
+          <Button variant="contained" onClick={navigateCreatePage}>Create New Trip</Button>
+          </Stack>
+        )}
+      </div>
+        {tripList}
     </div>
   );
 };
 
 export default TripIndex;
+
+{/* <Button variant="contained">Contained</Button> */}
