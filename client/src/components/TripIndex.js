@@ -29,7 +29,9 @@ const TripCard = ({ trip, handleDelete, authorised }) => {
         </Link>
         {authorised &&
           <CardActions>
-            <Button size="small">Edit</Button>
+            <Button size="small">
+              <Link to={`/${trip._id}/edit`}>Edit</Link>
+            </Button>
             <Button size="small" onClick={() => handleDelete(trip._id)}>Delete</Button>
           </CardActions>
         }
