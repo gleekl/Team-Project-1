@@ -149,12 +149,12 @@ const CreateTrip = (props) => {
           >
             <TextField
               id="outlined-basic totalCost"
-              label="totalCost"
+              label="Total Cost"
               variant="outlined"
               name="totalCost"
               value={fields.totalCost}
               onChange={handleChange}
-              placeholder="total cost"
+              placeholder="Total cost"
               type="number"
             />
           </Box>

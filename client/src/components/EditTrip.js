@@ -7,6 +7,7 @@ const EditTrip = ({ trips, handleEdit }) => {
 
   const [fields, setFields] = useState(trip);
   const [image, setImage] = useState(trip.image);
+  const [buttonDisabled, setButtonDisabled] = useState(true);
 
   const handleImageChange = (e) => {
     setImage(e.target.files[0]);
