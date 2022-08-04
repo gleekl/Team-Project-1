@@ -10,6 +10,7 @@ nav {
   position: fixed;
   top: 0;
   width: 100%;
+  z-index: 99;
 }
 
 nav h1 {
@@ -44,11 +45,11 @@ main {
   margin: 15px
 }
 
-.create-trip-form {
+.trip-form {
   margin: 30px;
 }
 
-.create-trip-heading {
+.trip-heading {
   margin-left: 30px;
 }
 

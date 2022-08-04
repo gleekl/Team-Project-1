@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
+import { useNavigate } from 'react-router-dom'
 
 
 import { Link } from "react-router-dom";
@@ -20,6 +21,10 @@ const initialState = {
 const CreateTrip = (props) => {
   const [fields, setFields] = useState(initialState);
   const [image, setImage] = useState(null);
+  const navigate = useNavigate()
+  const navigateToIndex = () => {
+    navigate('/')
+  }
 
   const handleImageChange = (e) => {
     setImage(e.target.files[0]);
@@ -44,8 +49,8 @@ const CreateTrip = (props) => {
 
   return (
     <>
-      <h1 className="create-trip-heading">Create a new trip!</h1>
-      <form onSubmit={handleSubmit} className="create-trip-form">
+      <h1 className="trip-heading">Create a new trip!</h1>
+      <form onSubmit={handleSubmit} className="trip-form">
         <div>
           <Box
             component="form"
@@ -154,7 +159,7 @@ const CreateTrip = (props) => {
               name="TotalCost"
               value={fields.totalCost}
               onChange={handleChange}
-              placeholder="author"
+              placeholder="totalCost"
               type="number"
               id="totalCost"
             />
@@ -198,7 +203,7 @@ const CreateTrip = (props) => {
         <br />
         <Stack spacing={2} direction="row">
           <Button variant="contained" type="submit">Submit</Button>
-          <Button variant="contained"><Link to={`/`}>Cancel</Link></Button>
+          <Button variant="contained" onClick={navigateToIndex} >Cancel</Button>
         </Stack>
       </form>
     </>
