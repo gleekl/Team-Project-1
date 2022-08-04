@@ -44,8 +44,8 @@ const CreateTrip = (props) => {
 
   return (
     <>
-      <h1>Create a new trip!</h1>
-      <form onSubmit={handleSubmit}>
+      <h1 className="create-trip-heading">Create a new trip!</h1>
+      <form onSubmit={handleSubmit} className="create-trip-form">
         <div>
           <Box
             component="form"
@@ -182,10 +182,9 @@ const CreateTrip = (props) => {
             />
           </Box>
         </div>
+        <br />
         <div>
-          <label htmlFor="image">Upload a cover photo for your trip!</label>
-          <br />
-          <br />
+          <h4><label htmlFor="image">Upload a cover photo for your trip!</label></h4>
           {/* <Button variant="contained" component='label'>Upload Photo */}
             <input 
               name="image"
