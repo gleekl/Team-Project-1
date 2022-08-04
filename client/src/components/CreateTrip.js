@@ -176,7 +176,9 @@ const CreateTrip = (props) => {
                 value={fields.description}
                 onChange={handleChange}
                 placeholder="description"
-                type="text"
+                // type="text"
+                multiline
+                rows={5}
               />
             </Box>
           </div>
