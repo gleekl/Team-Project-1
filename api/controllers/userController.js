@@ -14,7 +14,7 @@ userRouter.post('/signup', async (req, res) => {
 
   try {
     const user = await User.create(req.body)
-    req.sesion.currentUser = user
+    req.session.currentUser = user
     res.status(200).json({
       msg: 'You have succesfully signed up.',
       authorised: true,

@@ -1,4 +1,11 @@
 import { useState } from "react";
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+
+
 import { Link } from "react-router-dom";
 
 const initialState = {
@@ -37,89 +44,167 @@ const CreateTrip = (props) => {
 
   return (
     <>
-      <h1>Create a new trip!</h1>
-      <form onSubmit={handleSubmit}>
+      <h1 className="create-trip-heading">Create a new trip!</h1>
+      <form onSubmit={handleSubmit} className="create-trip-form">
         <div>
-          <label htmlFor="author">Author</label>
-          <input
-            name="author"
-            value={fields.author}
-            onChange={handleChange}
-            placeholder="author"
-            type="text"
-            id="author"
-          />
+          <Box
+            component="form"
+            sx={{
+              '& > :not(style)': { m: 1, width: '25ch' },
+            }}
+            noValidate
+            autoComplete="off"
+          >
+            <TextField
+              id="outlined-basic"
+              label="Author"
+              variant="outlined"
+              name="author"
+              value={fields.author}
+              onChange={handleChange}
+              placeholder="author"
+              type="text"
+              id="author"
+            />
+          </Box>
+        </div>
+
+        <div>
+          <Box
+            component="form"
+            sx={{
+              '& > :not(style)': { m: 1, width: '25ch' },
+            }}
+            noValidate
+            autoComplete="off"
+          >
+            <TextField
+              id="outlined-basic"
+              label="Trip Title"
+              variant="outlined"
+              name="title"
+              value={fields.title}
+              onChange={handleChange}
+              placeholder="title"
+              type="text"
+              id="title"
+            />
+          </Box>
+        </div>
+
+        <div>
+          {/* <label htmlFor="startDate">Trip Start Date</label> */}
+          <Box
+            component="form"
+            sx={{
+              '& > :not(style)': { m: 1, width: '25ch' },
+            }}
+            noValidate
+            autoComplete="off"
+          >
+            <TextField InputLabelProps={{ shrink: true }}
+              id="outlined-basic"
+              label="Trip Start Date"
+              variant="outlined"
+              name="startDate"
+              value={fields.startDate}
+              onChange={handleChange}
+              placeholder="startDate"
+              type="date"
+              id="startDate"
+            />
+          </Box>
         </div>
         <div>
-          <label htmlFor="title">Trip Title</label>
-          <input
-            name="title"
-            value={fields.title}
-            onChange={handleChange}
-            placeholder="title"
-            type="text"
-            id="title"
-          />
+          {/* <label htmlFor="endDate">Trip End Date</label> */}
+          <Box
+            component="form"
+            sx={{
+              '& > :not(style)': { m: 1, width: '25ch' },
+            }}
+            noValidate
+            autoComplete="off"
+          >
+            <TextField InputLabelProps={{ shrink: true }}
+              id="outlined-basic"
+              label="Trip End Date"
+              variant="outlined"
+              name="endDate"
+              value={fields.endDate}
+              onChange={handleChange}
+              placeholder="endDate"
+              type="date"
+              id="endDate"
+            />
+          </Box>
         </div>
         <div>
-          <label htmlFor="startDate">Start Date</label>
-          <input
-            name="startDate"
-            value={fields.startDate}
-            onChange={handleChange}
-            type="date"
-            id="startDate"
-          />
+          <Box
+            component="form"
+            sx={{
+              '& > :not(style)': { m: 1, width: '25ch' },
+            }}
+            noValidate
+            autoComplete="off"
+          >
+            <TextField
+              id="outlined-basic"
+              label="Total Cost"
+              variant="outlined"
+              name="TotalCost"
+              value={fields.totalCost}
+              onChange={handleChange}
+              placeholder="author"
+              type="number"
+              id="totalCost"
+            />
+          </Box>
         </div>
         <div>
-          <label htmlFor="endDate">End Date</label>
-          <input
-            name="endDate"
-            value={fields.endDate}
-            onChange={handleChange}
-            type="date"
-            id="endDate"
-          />
+          <Box
+            component="form"
+            sx={{
+              '& > :not(style)': { m: 1, width: '25ch' },
+            }}
+            noValidate
+            autoComplete="off"
+          >
+            <TextField
+              id="outlined-basic"
+              label="Trip Description"
+              variant="outlined"
+              name="description"
+              value={fields.description}
+              onChange={handleChange}
+              placeholder="description"
+              type="text"
+              id="description"
+            />
+          </Box>
         </div>
+        <br />
         <div>
-          <label htmlFor="totalCost">Total Cost</label>
-          <input
-            name="totalCost"
-            value={fields.totalCost}
-            onChange={handleChange}
-            type="number"
-            id="totalCost"
-          />
+          <h4><label htmlFor="image">Upload a cover photo for your trip!</label></h4>
+          {/* <Button variant="contained" component='label'>Upload Photo */}
+            <input 
+              name="image"
+              onChange={handleImageChange}
+              id="image"
+              type="file"
+            />
+          {/* </Button> */}
         </div>
-        <div>
-          <label htmlFor="description">Description</label>
-          <input
-            name="description"
-            value={fields.description}
-            onChange={handleChange}
-            placeholder="Enter some information about your trip!"
-            type="text"
-            id="description"
-          />
-        </div>
-        <div>
-          <label htmlFor="image">Upload a cover photo for your trip!</label>
-          <br />
-          <input
-            name="image"
-            onChange={handleImageChange}
-            id="image"
-            type="file"
-          />
-          <input type="submit" value="Upload" />
-        </div>
-        <button>Submit</button>
-        <button>
-          <Link to={`/`}>Cancel</Link>
-        </button>
+        <br />
+        <br />
+        <Stack spacing={2} direction="row">
+          <Button variant="contained" type="submit">Submit</Button>
+          <Button variant="contained"><Link to={`/`}>Cancel</Link></Button>
+        </Stack>
       </form>
     </>
   );
 };
 
 export default CreateTrip;
+
+
