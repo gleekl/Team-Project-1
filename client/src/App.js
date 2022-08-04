@@ -109,20 +109,11 @@ function App() {
     const formData = new FormData();
     for (let field in tripObj) {
       formData.append(field, tripObj[field]);
-      console.log(tripObj[field]);
     }
-    console.log(formData);
-    console.log(`/trips/${tripID}`);
-
     const res = await fetch(`/trips/${tripID}`, {
       method: "PUT",
-      headers: {
-        accepts: "application/json",
-      },
       body: formData,
     });
-    console.log(res);
-    return;
     if (res.ok) {
       const newTrip = await res.json();
       setTrips([...trips, newTrip]);
@@ -131,7 +122,7 @@ function App() {
       console.log("error editing trip ", tripID);
     }
   };
-  
+
   useEffect(() => {
     const checkIfLoggedIn = async () => {
       const res = await fetch("/users/isauthorised");
@@ -151,25 +142,28 @@ function App() {
           <Route
             path="/"
             element={
-              trips && 
-              <TripIndex 
-                trips={trips} 
-                handleDelete={handleDelete} 
-                handleAuthentication={handleAuthentication} 
-                authorised={authorised}
-              />}
+              trips && (
+                <TripIndex
+                  trips={trips}
+                  handleDelete={handleDelete}
+                  handleAuthentication={handleAuthentication}
+                  authorised={authorised}
+                />
+              )
+            }
           />
           <Route
             path="/:tripID"
             element={
-              trips && 
-              <TripDetails 
-                trips={trips} 
-                handleDelete={handleDelete} 
-                handleEventDelete={handleEventDelete} 
-                handleCreateEvent={handleCreateEvent} 
-                authorised={authorised}
-              />
+              trips && (
+                <TripDetails
+                  trips={trips}
+                  handleDelete={handleDelete}
+                  handleEventDelete={handleEventDelete}
+                  handleCreateEvent={handleCreateEvent}
+                  authorised={authorised}
+                />
+              )
             }
           />
           <Route
@@ -178,7 +172,9 @@ function App() {
           />
           <Route
             path="/newevent"
-            element={events && <CreateEvent handleCreateEvent={handleCreateEvent} />}
+            element={
+              events && <CreateEvent handleCreateEvent={handleCreateEvent} />
+            }
           />
           <Route
             path="/:tripID/edit"
@@ -186,9 +182,18 @@ function App() {
               trips && <EditTrip trips={trips} handleEdit={handleEdit} />
             }
           />
-          <Route path="/login" element={<Login handleLogin={handleAuthentication} />} />
-          <Route path="/logout" element={<Logout handleLogout={handleLogout} />} />
-          <Route path="/signup" element={<Signup handleSignup={handleAuthentication} />} />
+          <Route
+            path="/login"
+            element={<Login handleLogin={handleAuthentication} />}
+          />
+          <Route
+            path="/logout"
+            element={<Logout handleLogout={handleLogout} />}
+          />
+          <Route
+            path="/signup"
+            element={<Signup handleSignup={handleAuthentication} />}
+          />
         </Routes>
       </main>
     </div>
