@@ -65,7 +65,7 @@ const TripDetails = ({
           component="img"
           height="140"
           image={trip.image}
-          alt="green iguana"
+          alt={trip.title}
         />
         <CardContent>
           <Typography gutterBottom variant="h3" component="div">
