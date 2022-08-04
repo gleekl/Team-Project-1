@@ -6,6 +6,7 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 
 
+import { Link } from "react-router-dom";
 
 const initialState = {
   author: "",
@@ -198,7 +199,7 @@ const CreateTrip = (props) => {
         <br />
         <Stack spacing={2} direction="row">
           <Button variant="contained" type="submit">Submit</Button>
-          <Button variant="contained">Cancel</Button>
+          <Button variant="contained"><Link to={`/`}>Cancel</Link></Button>
         </Stack>
       </form>
     </>
