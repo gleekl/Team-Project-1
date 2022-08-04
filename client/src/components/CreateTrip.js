@@ -4,8 +4,8 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
-
 import { Link } from "react-router-dom";
+import { isDisabled } from "@testing-library/user-event/dist/utils";
 
 const initialState = {
   author: "",
@@ -19,6 +19,7 @@ const initialState = {
 const CreateTrip = (props) => {
   const [fields, setFields] = useState(initialState);
   const [image, setImage] = useState(null);
+  const [buttonDisabled, setButtonDisabled] = useState(true);
 
   const handleImageChange = (e) => {
     setImage(e.target.files[0]);
@@ -32,6 +33,8 @@ const CreateTrip = (props) => {
       [name]: value,
     };
     setFields(updatedFields);
+    const isDisabled = Object.values(updatedFields).some((v) => !v);
+    setButtonDisabled(isDisabled);
   };
 
   const handleSubmit = (e) => {
@@ -55,7 +58,7 @@ const CreateTrip = (props) => {
             autoComplete="off"
           >
             <TextField
-              id="outlined-basic"
+              id="outlined-basic author"
               label="Author"
               variant="outlined"
               name="author"
@@ -77,7 +80,7 @@ const CreateTrip = (props) => {
             autoComplete="off"
           >
             <TextField
-              id="outlined-basic"
+              id="outlined-basic title"
               label="Trip Title"
               variant="outlined"
               name="title"
@@ -101,7 +104,7 @@ const CreateTrip = (props) => {
           >
             <TextField
               InputLabelProps={{ shrink: true }}
-              id="outlined-basic"
+              id="outlined-basic startDate"
               label="Trip Start Date"
               variant="outlined"
               name="startDate"
@@ -124,7 +127,7 @@ const CreateTrip = (props) => {
           >
             <TextField
               InputLabelProps={{ shrink: true }}
-              id="outlined-basic"
+              id="outlined-basic endDate"
               label="Trip End Date"
               variant="outlined"
               name="endDate"
@@ -145,13 +148,13 @@ const CreateTrip = (props) => {
             autoComplete="off"
           >
             <TextField
-              id="outlined-basic"
-              label="Total Cost"
+              id="outlined-basic totalCost"
+              label="totalCost"
               variant="outlined"
-              name="TotalCost"
+              name="totalCost"
               value={fields.totalCost}
               onChange={handleChange}
-              placeholder="author"
+              placeholder="total cost"
               type="number"
             />
           </Box>
@@ -166,7 +169,7 @@ const CreateTrip = (props) => {
             autoComplete="off"
           >
             <TextField
-              id="outlined-basic"
+              id="outlined-basic description"
               label="Trip Description"
               variant="outlined"
               name="description"
@@ -194,7 +197,7 @@ const CreateTrip = (props) => {
         <br />
         <br />
         <Stack spacing={2} direction="row">
-          <Button variant="contained" type="submit">
+          <Button variant="contained" type="submit" disabled={buttonDisabled}>
             Submit
           </Button>
           <Button variant="contained">
