@@ -27,7 +27,7 @@ const Logout = ({ handleLogout }) => {
       >
         <DialogTitle id="alert-dialog-title">{"Are you sure you wish to log out?"}</DialogTitle>
         <DialogActions>
-          <Button onClick={handleLogout} autoFocus>Yes, log out</Button>
+          <Button onClick={handleLogout} variant="contained" autoFocus>Yes, log out</Button>
           <Button onClick={handleClose}>Cancel</Button>
         </DialogActions>
       </Dialog>
