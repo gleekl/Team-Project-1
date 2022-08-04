@@ -9,6 +9,7 @@ import Stack from '@mui/material/Stack';
 import { Link, useNavigate } from "react-router-dom";
 
 const TripCard = ({ trip, handleDelete, authorised }) => {
+  const navigate = useNavigate();
   return (
     <div className="trip-card">
       <Card sx={{ maxWidth: 345 }}>
@@ -30,8 +31,13 @@ const TripCard = ({ trip, handleDelete, authorised }) => {
         </Link>
         {authorised && (
           <CardActions>
-            <Button size="small">
-              <Link to={`/${trip._id}/edit`}>Edit</Link>
+            <Button
+              size="small"
+              onClick={() => {
+                navigate(`/${trip._id}/edit`);
+              }}
+            >
+              Edit
             </Button>
             <Button size="small" onClick={() => handleDelete(trip._id)}>
               Delete

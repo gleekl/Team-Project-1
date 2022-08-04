@@ -13,6 +13,7 @@ const EditTrip = ({ trips, handleEdit }) => {
 
   const [fields, setFields] = useState(trip);
   const [image, setImage] = useState(trip.image);
+  const [buttonDisabled, setButtonDisabled] = useState(true);
   const navigate = useNavigate()
   const navigateToIndex = () => {
     navigate('/')
@@ -182,9 +183,9 @@ const EditTrip = ({ trips, handleEdit }) => {
             </div>
             <br />
             <br />
-            <Stack spacing={2} direction="row" className="button">
+          <Stack spacing={2} direction="row" className="button">
               <Button variant="contained" type="submit">Submit</Button>
-              <Button variant="contained" onClick={navigateToIndex} >Cancel</Button>
+              <Button variant="contained" onClick={navigateToIndex}>Cancel</Button>
             </Stack>
           </div>
         </form>

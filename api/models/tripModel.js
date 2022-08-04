@@ -5,8 +5,8 @@ const tripSchema = new Schema(
   {
     author: { type: String, required: true }, // stretch goal
     title: { type: String, required: true },
-    startDate: Date,
-    endDate: Date,
+    startDate: { type: Date, required: true },
+    endDate: { type: Date, required: true },
     events: [{ type: Schema.Types.ObjectId, ref: "Event" }],
     totalCost: Number,
     description: String,
