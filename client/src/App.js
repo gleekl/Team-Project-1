@@ -98,20 +98,11 @@ function App() {
     const formData = new FormData();
     for (let field in tripObj) {
       formData.append(field, tripObj[field]);
-      console.log(tripObj[field]);
     }
-    console.log(formData);
-    console.log(`/trips/${tripID}`);
-
     const res = await fetch(`/trips/${tripID}`, {
       method: "PUT",
-      headers: {
-        accepts: "application/json",
-      },
       body: formData,
     });
-    console.log(res);
-    return;
     if (res.ok) {
       const newTrip = await res.json();
       setTrips([...trips, newTrip]);
@@ -120,7 +111,6 @@ function App() {
       console.log("error editing trip ", tripID);
     }
   };
-
   return (
     <div className="App">
       <NavigationBar authorised={authorised} />
