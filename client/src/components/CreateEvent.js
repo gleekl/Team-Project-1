@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const initialState = {
   title: "",
@@ -14,6 +14,8 @@ const CreateEvent = (props) => {
   const [image, setImage] = useState(null);
 
   const { tripID } = useParams()
+
+  const navigate = useNavigate()
 
   const handleImageChange = (e) => {
     setImage(e.target.files[0]);
@@ -34,6 +36,7 @@ const CreateEvent = (props) => {
     props.handleCreateEvent({ ...fields, image: image }, tripID);
     setFields(initialState);
     setImage(null);
+    navigate(`/${tripID}`)
   };
 
   return (
