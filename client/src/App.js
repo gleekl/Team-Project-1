@@ -189,6 +189,7 @@ function App() {
                   handleDelete={handleDelete}
                   handleEventDelete={handleEventDelete}
                   handleCreateEvent={handleCreateEvent}
+                  handleEditEvent={handleEditEvent}
                   authorised={authorised}
                 />
               )

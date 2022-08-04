@@ -29,7 +29,7 @@ eventRouter.post("/:tripID", upload.single("image"), async (req, res) => {
   }
 
   try {
-    const field = { ...req.body, image: req.file.path };
+    const field = { ...req.body, image: image };
     const newEvent = await Event.create(field);
     const trip = await Trip.findById(req.params.tripID).exec()
     trip.events.push(newEvent)

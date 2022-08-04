@@ -14,21 +14,25 @@ const TripDetails = ({
   handleDelete,
   handleEventDelete,
   handleCreateEvent,
+  handleEditEvent,
   authorised,
 }) => {
   const { tripID } = useParams();
   const navigate = useNavigate();
 
   const trip = trips.find((trip) => trip._id === tripID);
+  console.log(trip._id);
 
   const eventList = trip.events.map((event) => {
     return (
       <EventDetails
+        tripID={trip._id}
         event={event}
         key={event._id}
         handleEventDelete={() => {
           handleEventDelete(trip._id, event._id);
         }}
+        handleEditEvent={handleEditEvent}
         authorised={authorised}
       />
     );

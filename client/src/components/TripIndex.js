@@ -1,4 +1,6 @@
 import * as React from "react";
+import { Link, useNavigate } from "react-router-dom";
+
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -6,10 +8,10 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Stack from '@mui/material/Stack';
-import { Link, useNavigate } from "react-router-dom";
 
 const TripCard = ({ trip, handleDelete, authorised }) => {
   const navigate = useNavigate();
+
   return (
     <div className="trip-card">
       <Card sx={{ maxWidth: 345 }}>
