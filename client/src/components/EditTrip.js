@@ -45,7 +45,7 @@ const EditTrip = ({ trips, handleEdit }) => {
           className="trip-form">
           <div>
             <Box
-              component="form"
+              // component="form"
               sx={{
                 '& > :not(style)': { m: 1, width: '25ch' },
               }}
@@ -66,7 +66,7 @@ const EditTrip = ({ trips, handleEdit }) => {
           </div>
           <div>
             <Box
-              component="form"
+              // component="form"
               sx={{
                 '& > :not(style)': { m: 1, width: '25ch' },
               }}
@@ -87,7 +87,7 @@ const EditTrip = ({ trips, handleEdit }) => {
           </div>
           <div>
             <Box
-              component="form"
+              // component="form"
               sx={{
                 '& > :not(style)': { m: 1, width: '25ch' },
               }}
@@ -108,7 +108,7 @@ const EditTrip = ({ trips, handleEdit }) => {
           </div>
           <div>
             <Box
-              component="form"
+              // component="form"
               sx={{
                 '& > :not(style)': { m: 1, width: '25ch' },
               }}
@@ -129,7 +129,7 @@ const EditTrip = ({ trips, handleEdit }) => {
           </div>
           <div>
             <Box
-              component="form"
+              // component="form"
               sx={{
                 '& > :not(style)': { m: 1, width: '25ch' },
               }}
@@ -150,7 +150,7 @@ const EditTrip = ({ trips, handleEdit }) => {
           </div>
           <div>
             <Box
-              component="form"
+              // component="form"
               sx={{
                 '& > :not(style)': { m: 1, width: '25ch' },
               }}

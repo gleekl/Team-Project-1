@@ -48,11 +48,12 @@ const CreateTrip = (props) => {
 
   return (
     <>
-      <h1 className="create-trip-heading">Create a new trip!</h1>
-      <form onSubmit={handleSubmit} className="create-trip-form">
+    <div className="trip-div">
+      <h1 className="trip-heading">Create a new trip!</h1>
+      <form onSubmit={handleSubmit} className="trip-form">
         <div>
           <Box
-            component="form"
+            // component="form"
             sx={{
               "& > :not(style)": { m: 1, width: "25ch" },
             }}
@@ -74,7 +75,7 @@ const CreateTrip = (props) => {
 
         <div>
           <Box
-            component="form"
+            // component="form"
             sx={{
               "& > :not(style)": { m: 1, width: "25ch" },
             }}
@@ -95,9 +96,8 @@ const CreateTrip = (props) => {
         </div>
 
         <div>
-          {/* <label htmlFor="startDate">Trip Start Date</label> */}
           <Box
-            component="form"
+            // component="form"
             sx={{
               "& > :not(style)": { m: 1, width: "25ch" },
             }}
@@ -118,9 +118,8 @@ const CreateTrip = (props) => {
           </Box>
         </div>
         <div>
-          {/* <label htmlFor="endDate">Trip End Date</label> */}
           <Box
-            component="form"
+            // component="form"
             sx={{
               "& > :not(style)": { m: 1, width: "25ch" },
             }}
@@ -142,7 +141,7 @@ const CreateTrip = (props) => {
         </div>
         <div>
           <Box
-            component="form"
+            // component="form"
             sx={{
               "& > :not(style)": { m: 1, width: "25ch" },
             }}
@@ -163,7 +162,7 @@ const CreateTrip = (props) => {
         </div>
         <div>
           <Box
-            component="form"
+            // component="form"
             sx={{
               "& > :not(style)": { m: 1, width: "25ch" },
             }}
@@ -183,6 +182,7 @@ const CreateTrip = (props) => {
           </Box>
         </div>
         <br />
+        <div className="form-padding">
         <div>
           <h4>
             <label htmlFor="image">Upload a cover photo for your trip!</label>
@@ -206,7 +206,9 @@ const CreateTrip = (props) => {
             <Link to={`/`}>Cancel</Link>
           </Button>
         </Stack>
+        </div>
       </form>
+      </div>
     </>
   );
 };
