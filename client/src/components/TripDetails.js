@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import EventDetails from "./EventDetails";
 import * as React from "react";
@@ -20,19 +20,6 @@ const TripDetails = ({
   const navigate = useNavigate();
 
   const trip = trips.find((trip) => trip._id === tripID);
-
-  // getTripDetails = () => {};
-
-  // useEffect(() => {
-  //   const checkIfLoggedIn = async () => {
-  //     const res = await fetch("/users/isauthorised");
-  //     const data = await res.json();
-  //     console.log(data.msg);
-  //     setAuthorised(data.authorised);
-  //   };
-  //   checkIfLoggedIn();
-  //   getTripDetails();
-  // }, []);
 
   const eventList = trip.events.map((event) => {
     return (
