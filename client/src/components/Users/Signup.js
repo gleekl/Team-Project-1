@@ -1,27 +1,26 @@
-const { useState } = require("react")
-const { Link } = require("react-router-dom")
-
+const { useState } = require("react");
+const { Link } = require("react-router-dom");
 
 const Signup = (props) => {
-  const [fields, setFields] = useState({ username: "", password: "" })
+  const [fields, setFields] = useState({ username: "", password: "" });
 
   const handleChange = (evt) => {
     setFields({
       ...fields,
-      [evt.target.name]: evt.target.value
-    })
-  }
+      [evt.target.name]: evt.target.value,
+    });
+  };
 
   const handleSubmit = async (evt) => {
-    evt.preventDefault()
-    const res = await fetch('/users/signup', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(fields)
-    })
-    const data = await res.json()
+    evt.preventDefault();
+    const res = await fetch("/users/signup", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(fields),
+    });
+    const data = await res.json();
     console.log(data);
-  }
+  };
 
   return (
     <form onSubmit={handleSubmit}>
@@ -45,9 +44,11 @@ const Signup = (props) => {
         />
       </div>
       <input type="submit" value="Sign Up" />
-      <p>Already have an account? <Link to="/login">Login here</Link></p>
+      <p>
+        Already have an account? <Link to="/login">Login here</Link>
+      </p>
     </form>
-  )
-}
+  );
+};
 
-export default Signup
+export default Signup;

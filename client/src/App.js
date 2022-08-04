@@ -56,7 +56,6 @@ function App() {
   };
 
   const handleEventDelete = async (tripID, eventID) => {
-    console.log("Delete this event", eventID);
     await fetch(`/events/${eventID}`, {
       method: "DELETE",
       headers: {
@@ -67,7 +66,7 @@ function App() {
     updatedTrip.events = updatedTrip.events.filter(
       (event) => event._id !== eventID
     );
-    console.log(updatedTrip);
+
     const index = trips.findIndex((trip) => trip._id === tripID);
     setTrips([...trips.slice(0, index), updatedTrip, ...trips.slice(index)]);
   };
@@ -112,8 +111,6 @@ function App() {
   };
 
   const handleEdit = async (tripObj, tripID) => {
-    console.log("i am clicking on trip id", tripID);
-    console.log("this is the field for updating", tripObj);
     const formData = new FormData();
     for (let field in tripObj) {
       formData.append(field, tripObj[field]);
@@ -123,8 +120,10 @@ function App() {
       body: formData,
     });
     if (res.ok) {
-      const newTrip = await res.json();
-      setTrips([...trips, newTrip]);
+      getTrips();
+      let updatedTrip = { ...trips.find((trip) => trip._id === tripID) };
+      const index = trips.findIndex((trip) => trip._id === tripID);
+      setTrips([...trips.slice(0, index), updatedTrip, ...trips.slice(index)]);
       navigate(`/${tripID}`);
     } else {
       console.log("error editing trip ", tripID);

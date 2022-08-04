@@ -10,15 +10,16 @@ const upload = require("../middlewares/upload");
 // INDEX route
 eventRouter.get("/", async (req, res) => {
   const event = await Event.find({}).exec();
-  console.log(event);
   res.status(200).json(event);
 });
 
 // SHOW route
-eventRouter.get('/:eventID', async (req, res) => {
-  const event = await Event.findById(req.params.eventID).populate('events').exec()
-  res.status(200).json(event)
-})
+eventRouter.get("/:eventID", async (req, res) => {
+  const event = await Event.findById(req.params.eventID)
+    .populate("events")
+    .exec();
+  res.status(200).json(event);
+});
 
 // CREATE route
 eventRouter.post("/:tripID", upload.single("image"), async (req, res) => {
@@ -48,22 +49,18 @@ eventRouter.put("/:eventID", upload.single("image"), async (req, res) => {
       req.body,
       { new: true }
     ).exec();
-    console.log(update);
     res.status(200).json(updatedEvent);
   } catch (error) {
     res.status(500).json({ errorMessage: error.Message });
     console.log(error.message);
-    console.log(
-      "Error updating Event.",
-      req.params.eventID
-    );
+    console.log("Error updating Event.", req.params.eventID);
   }
 });
 
 // DELETE Route
-eventRouter.delete('/:eventID', async (req, res) => {
-  const deleteEvent = await Event.findByIdAndRemove(req.params.eventID).exec()
-  res.status(200).json(deleteEvent)
-})
+eventRouter.delete("/:eventID", async (req, res) => {
+  const deleteEvent = await Event.findByIdAndRemove(req.params.eventID).exec();
+  res.status(200).json(deleteEvent);
+});
 
 module.exports = eventRouter;
