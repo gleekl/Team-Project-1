@@ -49,7 +49,6 @@ function App() {
   };
 
   const handleEventDelete = async (tripID, eventID) => {
-    console.log("Delete this event", eventID);
     await fetch(`/events/${eventID}`, {
       method: "DELETE",
       headers: {
@@ -104,8 +103,6 @@ function App() {
   };
 
   const handleEdit = async (tripObj, tripID) => {
-    console.log("i am clicking on trip id", tripID);
-    console.log("this is the field for updating", tripObj);
     const formData = new FormData();
     for (let field in tripObj) {
       formData.append(field, tripObj[field]);
