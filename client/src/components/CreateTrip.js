@@ -1,4 +1,7 @@
 import { useState } from "react";
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
 
 const initialState = {
   author: "",
@@ -39,27 +42,51 @@ const CreateTrip = (props) => {
       <h1>Create a new trip!</h1>
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="author">Author</label>
-          <input
-            name="author"
-            value={fields.author}
-            onChange={handleChange}
-            placeholder="author"
-            type="text"
-            id="author"
-          />
+          <Box
+            component="form"
+            sx={{
+              '& > :not(style)': { m: 1, width: '25ch' },
+            }}
+            noValidate
+            autoComplete="off"
+          >
+            <TextField
+              id="outlined-basic"
+              label="Author"
+              variant="outlined"
+              name="author"
+              value={fields.author}
+              onChange={handleChange}
+              placeholder="author"
+              type="text"
+              id="author"
+            />
+          </Box>
         </div>
+
         <div>
-          <label htmlFor="title">Trip Title</label>
-          <input
-            name="title"
-            value={fields.title}
-            onChange={handleChange}
-            placeholder="title"
-            type="text"
-            id="title"
-          />
+        <Box
+            component="form"
+            sx={{
+              '& > :not(style)': { m: 1, width: '25ch' },
+            }}
+            noValidate
+            autoComplete="off"
+          >
+            <TextField
+              id="outlined-basic"
+              label="Trip Title"
+              variant="outlined"
+              name="title"
+              value={fields.title}
+              onChange={handleChange}
+              placeholder="title"
+              type="text"
+              id="title"
+            />
+          </Box>
         </div>
+        
         <div>
           <label htmlFor="startDate">Start Date</label>
           <input
@@ -120,3 +147,5 @@ const CreateTrip = (props) => {
 };
 
 export default CreateTrip;
+
+
