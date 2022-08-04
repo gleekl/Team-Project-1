@@ -1,6 +1,8 @@
 const express = require("express");
 
 const eventRouter = express.Router();
+
+const Trip = require("../models/tripModel")
 const Event = require("../models/eventModel");
 
 const upload = require("../middlewares/upload");
@@ -19,13 +21,18 @@ eventRouter.get('/:eventID', async (req, res) => {
 })
 
 // CREATE route
-eventRouter.post("/", upload.single("image"), async (req, res) => {
+eventRouter.post("/:tripID", upload.single("image"), async (req, res) => {
   try {
     // add image to req.body
     // image: req.file
     const field = { ...req.body, image: req.file.path };
     const newEvent = await Event.create(field);
-    res.status(200).json(newEvent);
+    const trip = await Trip.findById(req.params.tripID).exec()
+    console.log(trip);
+    trip.events.push(newEvent)
+    const updatedTrip = await trip.save()
+    await updatedTrip.populate('events')
+    res.status(200).json(updatedTrip);
   } catch (error) {
     res.status(500).json({ errorMessage: error.Message });
     console.log(error.message);
