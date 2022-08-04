@@ -43,3 +43,11 @@ main {
 .trip-details {
   margin: 15px
 }
+
+.create-trip-form {
+  margin: 30px;
+}
+
+.create-trip-heading {
+  margin-left: 30px;
+}

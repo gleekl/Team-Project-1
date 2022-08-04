@@ -44,8 +44,8 @@ const CreateTrip = (props) => {
 
   return (
     <>
-      <h1>Create a new trip!</h1>
-      <form onSubmit={handleSubmit}>
+      <h1 className="create-trip-heading">Create a new trip!</h1>
+      <form onSubmit={handleSubmit} className="create-trip-form">
         <div>
           <Box
             component="form"
