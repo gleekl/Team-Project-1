@@ -55,7 +55,7 @@ const TripDetails = ({
   let strEndDate = trip.endDate.substring(0, 10).split("-").reverse().join("-");
 
   const navigateCreateEventPage = () => {
-    navigate("/newevent");
+    navigate(`/${tripID}/newevent`);
   };
 
   return (
