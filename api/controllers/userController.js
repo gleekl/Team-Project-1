@@ -20,7 +20,7 @@ userRouter.post('/signup', async (req, res) => {
       authorised: true,
       user: {
         id: user._id,
-        username: user.usrename
+        username: user.username
       }
     })
   } catch (error) {
