@@ -12,9 +12,12 @@ const Logout = ({ handleLogout }) => {
     setOpen(false)
   }
 
-  const handleAgree = () => {
+  const handleAgree = async () => {
     console.log("Logged out");
-    handleClose()
+    const res = await fetch('/users/logout', {
+      method: 'POST'
+    })
+    handleLogout()
   }
 
   return (
@@ -27,7 +30,7 @@ const Logout = ({ handleLogout }) => {
       >
         <DialogTitle id="alert-dialog-title">{"Are you sure you wish to log out?"}</DialogTitle>
         <DialogActions>
-          <Button onClick={handleLogout} variant="contained" autoFocus>Yes, log out</Button>
+          <Button onClick={handleAgree} variant="contained" autoFocus>Yes, log out</Button>
           <Button onClick={handleClose}>Cancel</Button>
         </DialogActions>
       </Dialog>

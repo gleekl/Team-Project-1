@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import EventDetails from "./EventDetails";
 import * as React from "react";
 import Card from "@mui/material/Card";
@@ -68,7 +68,9 @@ const TripDetails = ({ trips, handleDelete, handleEventDelete, handleCreateEvent
           </Typography>
           {authorised &&
             <CardActions>
-              <Button size="small">Edit</Button>
+              <Button size="small">
+                <Link to={`/${trip._id}/edit`}>Edit</Link>
+              </Button>
               <Button size="small" onClick={() => handleDelete(trip._id)}>
                 Delete
               </Button>

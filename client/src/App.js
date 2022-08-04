@@ -7,6 +7,7 @@ import TripDetails from "./components/TripDetails";
 import TripIndex from "./components/TripIndex";
 import CreateTrip from "./components/CreateTrip";
 import CreateEvent from "./components/CreateEvent";
+import EditTrip from "./components/EditTrip";
 import Login from "./components/Users/Login";
 import Logout from "./components/Users/Logout";
 import Signup from "./components/Users/Signup";
@@ -55,19 +56,16 @@ function App() {
         "Content-Type": "application/json",
       },
     });
-    let updatedTrip = { ...trips.find((trip) => trip._id === tripID) }
-    updatedTrip.events = updatedTrip.events.filter((event) => event._id !== eventID)
+    let updatedTrip = { ...trips.find((trip) => trip._id === tripID) };
+    updatedTrip.events = updatedTrip.events.filter(
+      (event) => event._id !== eventID
+    );
     console.log(updatedTrip);
-    const index = trips.findIndex((trip) => trip._id === tripID)
-    setTrips([
-      ...trips.slice(0, index),
-      updatedTrip,
-      ...trips.slice(index)
-    ])
+    const index = trips.findIndex((trip) => trip._id === tripID);
+    setTrips([...trips.slice(0, index), updatedTrip, ...trips.slice(index)]);
   };
 
   const handleCreate = async (tripObj) => {
-    console.log(tripObj);
     const formData = new FormData();
     for (let field in tripObj) {
       formData.append(field, tripObj[field]);
@@ -76,7 +74,6 @@ function App() {
       method: "POST",
       body: formData,
     });
-    console.log("this is formdata", formData);
     if (res.ok) {
       const newTrip = await res.json();
       setTrips([...trips, newTrip]);
@@ -106,6 +103,35 @@ function App() {
     }
   };
 
+  const handleEdit = async (tripObj, tripID) => {
+    console.log("i am clicking on trip id", tripID);
+    console.log("this is the field for updating", tripObj);
+    const formData = new FormData();
+    for (let field in tripObj) {
+      formData.append(field, tripObj[field]);
+      console.log(tripObj[field]);
+    }
+    console.log(formData);
+    console.log(`/trips/${tripID}`);
+
+    const res = await fetch(`/trips/${tripID}`, {
+      method: "PUT",
+      headers: {
+        accepts: "application/json",
+      },
+      body: formData,
+    });
+    console.log(res);
+    return;
+    if (res.ok) {
+      const newTrip = await res.json();
+      setTrips([...trips, newTrip]);
+      navigate(`/${tripID}`);
+    } else {
+      console.log("error editing trip ", tripID);
+    }
+  };
+  
   useEffect(() => {
     const checkIfLoggedIn = async () => {
       const res = await fetch("/users/isauthorised");
@@ -153,6 +179,12 @@ function App() {
           <Route
             path="/newevent"
             element={events && <CreateEvent handleCreateEvent={handleCreateEvent} />}
+          />
+          <Route
+            path="/:tripID/edit"
+            element={
+              trips && <EditTrip trips={trips} handleEdit={handleEdit} />
+            }
           />
           <Route path="/login" element={<Login handleLogin={handleAuthentication} />} />
           <Route path="/logout" element={<Logout handleLogout={handleLogout} />} />

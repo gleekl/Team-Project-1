@@ -1,18 +1,12 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
-const initialState = {
-  author: "",
-  title: "",
-  startDate: "",
-  endDate: "",
-  totalCost: 0,
-  description: "",
-};
+const EditTrip = ({ trips, handleEdit }) => {
+  const { tripID } = useParams();
+  const trip = trips.find((trip) => trip._id === tripID);
 
-const CreateTrip = (props) => {
-  const [fields, setFields] = useState(initialState);
-  const [image, setImage] = useState(null);
+  const [fields, setFields] = useState(trip);
+  const [image, setImage] = useState(trip.image);
 
   const handleImageChange = (e) => {
     setImage(e.target.files[0]);
@@ -20,7 +14,6 @@ const CreateTrip = (props) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
     const updatedFields = {
       ...fields,
       [name]: value,
@@ -30,14 +23,12 @@ const CreateTrip = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.handleCreate({ ...fields, image: image });
-    setFields(initialState);
-    setImage(null);
+    handleEdit({ ...fields, image: image }, fields._id);
   };
 
   return (
     <>
-      <h1>Create a new trip!</h1>
+      <h1>Edit trip: {trip.title}</h1>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="author">Author</label>
@@ -115,11 +106,11 @@ const CreateTrip = (props) => {
         </div>
         <button>Submit</button>
         <button>
-          <Link to={`/`}>Cancel</Link>
+          <Link to={`/${trip._id}`}>Cancel</Link>
         </button>
       </form>
     </>
   );
 };
 
-export default CreateTrip;
+export default EditTrip;
