@@ -12,7 +12,7 @@ const EventDetails = ({ tripID, event, handleEventDelete, authorised }) => {
   const navigate = useNavigate();
 
   const navigateEditEventPage = () => {
-    navigate(`/${tripID}/editevent`)
+    navigate(`/${tripID}/${event._id}/editevent`)
   }
 
   return (

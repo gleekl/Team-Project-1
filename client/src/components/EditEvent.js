@@ -7,16 +7,16 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom'
 
-const EditTrip = ({ trips, handleEdit }) => {
-  const { tripID } = useParams();
-  const trip = trips.find((trip) => trip._id === tripID);
+const EditEvent = ({ events, handleEditEvent }) => {
+  const { tripID, eventID } = useParams();
+  const event = events.find((event) => event._id === eventID);
 
-  const [fields, setFields] = useState(trip);
-  const [image, setImage] = useState(trip.image);
+  const [fields, setFields] = useState(event);
+  const [image, setImage] = useState(event.image);
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const navigate = useNavigate()
-  const navigateToIndex = () => {
-    navigate('/')
+  const navigateToTrip = () => {
+    navigate(`/${tripID}`)
   }
 
   const handleImageChange = (e) => {
@@ -34,13 +34,13 @@ const EditTrip = ({ trips, handleEdit }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleEdit({ ...fields, image: image }, fields._id);
+    handleEditEvent({ ...fields, image: image }, fields._id);
   };
 
   return (
     <>
       <div className="trip-div">
-        <h1 className="trip-heading">Edit trip: {trip.title}</h1>
+        <h1 className="trip-heading">Edit event: {fields.title}</h1>
         <form onSubmit={handleSubmit}
           className="trip-form">
           <div>
@@ -54,28 +54,7 @@ const EditTrip = ({ trips, handleEdit }) => {
             >
               <TextField
                 id="outlined-basic"
-                label="Author"
-                variant="outlined"
-                name="author"
-                value={fields.author}
-                onChange={handleChange}
-                placeholder="author"
-                type="text"
-              />
-            </Box>
-          </div>
-          <div>
-            <Box
-              // component="form"
-              sx={{
-                '& > :not(style)': { m: 1, width: '25ch' },
-              }}
-              noValidate
-              autoComplete="off"
-            >
-              <TextField
-                id="outlined-basic"
-                label="Trip Title"
+                label="Event Title"
                 variant="outlined"
                 name="title"
                 value={fields.title}
@@ -96,13 +75,13 @@ const EditTrip = ({ trips, handleEdit }) => {
             >
               <TextField InputLabelProps={{ shrink: true }}
                 id="outlined-basic"
-                label="Trip Start Date"
+                label="country"
                 variant="outlined"
-                name="startDate"
-                value={fields.startDate}
+                name="country"
+                value={fields.country}
                 onChange={handleChange}
-                placeholder="startDate"
-                type="date"
+                placeholder="country"
+                type="text"
               />
             </Box>
           </div>
@@ -117,13 +96,13 @@ const EditTrip = ({ trips, handleEdit }) => {
             >
               <TextField InputLabelProps={{ shrink: true }}
                 id="outlined-basic"
-                label="Trip End Date"
+                label="City"
                 variant="outlined"
-                name="endDate"
-                value={fields.endDate}
+                name="city"
+                value={fields.city}
                 onChange={handleChange}
-                placeholder="endDate"
-                type="date"
+                placeholder="city"
+                type="text"
               />
             </Box>
           </div>
@@ -138,12 +117,12 @@ const EditTrip = ({ trips, handleEdit }) => {
             >
               <TextField
                 id="outlined-basic totalCost"
-                label="Total Cost"
+                label="Cost"
                 variant="outlined"
-                name="totalCost"
-                value={fields.totalCost}
+                name="cost"
+                value={fields.cost}
                 onChange={handleChange}
-                placeholder="Total Cost"
+                placeholder="Cost"
                 type="number"
               />
             </Box>
@@ -174,7 +153,7 @@ const EditTrip = ({ trips, handleEdit }) => {
           <br />
           <div className="form-padding">
             <div>
-              <h4><label htmlFor="image">Upload a cover photo for your trip!</label></h4>
+              <h4><label htmlFor="image">Upload a cover photo for your event!</label></h4>
               <br />
               <input
                 name="image"
@@ -185,9 +164,9 @@ const EditTrip = ({ trips, handleEdit }) => {
             </div>
             <br />
             <br />
-          <Stack spacing={2} direction="row" className="button">
+            <Stack spacing={2} direction="row" className="button">
               <Button variant="contained" type="submit">Submit</Button>
-              <Button variant="contained" onClick={navigateToIndex}>Cancel</Button>
+              <Button variant="contained" onClick={navigateToTrip}>Cancel</Button>
             </Stack>
           </div>
         </form>
@@ -196,4 +175,4 @@ const EditTrip = ({ trips, handleEdit }) => {
   );
 };
 
-export default EditTrip;
+export default EditEvent;

@@ -12,6 +12,7 @@ import Login from "./components/Users/Login";
 import Logout from "./components/Users/Logout";
 import Signup from "./components/Users/Signup";
 import ProtectedRoute from "./components/Protected/ProtectedRoute";
+import EditEvent from "./components/EditEvent";
 
 function App() {
   const [trips, setTrips] = useState(null);
@@ -214,7 +215,7 @@ function App() {
           <Route
             path="/:tripID/:eventID/editevent"
             element={
-              trips && <EditTrip trips={trips} handleEdit={handleEdit} />
+              events && <EditEvent events={events} handleEditEvent={handleEditEvent} />
             }
           />
           <Route
