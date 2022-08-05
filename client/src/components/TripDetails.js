@@ -22,7 +22,6 @@ const TripDetails = ({
   const navigate = useNavigate();
 
   const trip = trips.find((trip) => trip._id === tripID);
-  console.log(trip._id);
 
   const eventList = trip.events.map((event) => {
     return (

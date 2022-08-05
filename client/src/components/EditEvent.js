@@ -10,7 +10,8 @@ import { useNavigate } from 'react-router-dom'
 const EditEvent = ({ events, handleEditEvent }) => {
   const { tripID, eventID } = useParams();
   const event = events.find((event) => event._id === eventID);
-
+  console.log(event);
+  console.log(event.image);
   const [fields, setFields] = useState(event);
   const [image, setImage] = useState(event.image);
   const [buttonDisabled, setButtonDisabled] = useState(true);
@@ -20,6 +21,7 @@ const EditEvent = ({ events, handleEditEvent }) => {
   }
 
   const handleImageChange = (e) => {
+    console.log(e.target.files[0]);
     setImage(e.target.files[0]);
   };
 
@@ -29,6 +31,7 @@ const EditEvent = ({ events, handleEditEvent }) => {
       ...fields,
       [name]: value,
     };
+    console.log(updatedFields);
     setFields(updatedFields);
   };
 
