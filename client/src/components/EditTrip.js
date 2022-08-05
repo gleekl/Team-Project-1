@@ -161,6 +161,8 @@ const EditTrip = ({ trips, handleEdit }) => {
               <TextField
                 id="outlined-basic"
                 label="Trip Description"
+                multiline={true}
+                rows={5}
                 variant="outlined"
                 name="description"
                 value={fields.description}

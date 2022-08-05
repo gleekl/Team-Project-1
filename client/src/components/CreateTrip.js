@@ -172,6 +172,8 @@ const CreateTrip = (props) => {
                 id="outlined-basic description"
                 label="Trip Description"
                 variant="outlined"
+                multiline={true}
+                rows={5}
                 name="description"
                 value={fields.description}
                 onChange={handleChange}
