@@ -144,6 +144,8 @@ const CreateEvent = (props) => {
               <TextField
                 id="outlined-basic description"
                 label="Description"
+                multiline={true}
+                rows={5}
                 variant="outlined"
                 name="description"
                 value={fields.description}
