@@ -72,6 +72,7 @@ function App() {
   };
 
   const handleCreate = async (tripObj) => {
+    console.log("tripObj in handleCreate", tripObj);
     const formData = new FormData();
     for (let field in tripObj) {
       formData.append(field, tripObj[field]);
@@ -101,7 +102,7 @@ function App() {
     console.log("This is the formData of", formData);
     if (res.ok) {
       const newTrip = await res.json();
-      const index = trips.findIndex((trip) => trip._id === tripID)
+      const index = trips.findIndex((trip) => trip._id === tripID);
       setTrips([...trips.slice(0, index), newTrip, ...trips.slice(index + 1)]);
       // Need to redirect to the parent Trip
       navigate("/");
