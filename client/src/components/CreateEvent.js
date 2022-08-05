@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { useNavigate, useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { useNavigate } from 'react-router-dom'
 import * as React from 'react';
-
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
@@ -20,9 +20,12 @@ const CreateEvent = (props) => {
   const [image, setImage] = useState(null);
   const [buttonDisabled, setButtonDisabled] = useState(true);
 
-  const { tripID } = useParams()
-
   const navigate = useNavigate()
+  const navigateToIndex = () => {
+    navigate('/')
+  }
+
+  const { tripID } = useParams()
 
   const handleImageChange = (e) => {
     setImage(e.target.files[0]);
@@ -52,19 +55,19 @@ const CreateEvent = (props) => {
     <>
       <div className="trip-div">
         <h1 className="trip-heading">Create a new trip event!</h1>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}
+          className='trip-form'>
           <div>
             <Box
-              // component="form"
               sx={{
-                "& > :not(style)": { m: 1, width: "25ch" },
+                '& > :not(style)': { m: 1, width: '25ch' },
               }}
               noValidate
               autoComplete="off"
             >
               <TextField
                 id="outlined-basic title"
-                label="Title"
+                label="Event Title"
                 variant="outlined"
                 name="title"
                 value={fields.title}
@@ -76,9 +79,8 @@ const CreateEvent = (props) => {
           </div>
           <div>
             <Box
-              // component="form"
               sx={{
-                "& > :not(style)": { m: 1, width: "25ch" },
+                '& > :not(style)': { m: 1, width: '25ch' },
               }}
               noValidate
               autoComplete="off"
@@ -97,9 +99,8 @@ const CreateEvent = (props) => {
           </div>
           <div>
             <Box
-              // component="form"
               sx={{
-                "& > :not(style)": { m: 1, width: "25ch" },
+                '& > :not(style)': { m: 1, width: '25ch' },
               }}
               noValidate
               autoComplete="off"
@@ -118,9 +119,8 @@ const CreateEvent = (props) => {
           </div>
           <div>
             <Box
-              // component="form"
               sx={{
-                "& > :not(style)": { m: 1, width: "25ch" },
+                '& > :not(style)': { m: 1, width: '25ch' },
               }}
               noValidate
               autoComplete="off"
@@ -139,9 +139,8 @@ const CreateEvent = (props) => {
           </div>
           <div>
             <Box
-              // component="form"
               sx={{
-                "& > :not(style)": { m: 1, width: "25ch" },
+                '& > :not(style)': { m: 1, width: '25ch' },
               }}
               noValidate
               autoComplete="off"
@@ -149,6 +148,8 @@ const CreateEvent = (props) => {
               <TextField
                 id="outlined-basic description"
                 label="Description"
+                multiline={true}
+                rows={5}
                 variant="outlined"
                 name="description"
                 value={fields.description}
@@ -158,27 +159,23 @@ const CreateEvent = (props) => {
               />
             </Box>
           </div>
-          <div className="form-padding">
+          <br />
+          <div className='form-padding'>
             <div>
-              <h4>
-                <label htmlFor="image">Upload a cover photo for your event!</label>
-              </h4>
-              {/* <Button variant="contained" component='label'>Upload Photo */}
+              <h4><label htmlFor="image">Upload a cover photo for your trip!</label></h4>
+              <br />
               <input
                 name="image"
                 onChange={handleImageChange}
                 id="image"
                 type="file"
               />
-              {/* </Button> */}
             </div>
             <br />
             <br />
-            <Stack spacing={2} direction="row">
-              <Button variant="contained" type="submit" disabled={buttonDisabled}>
-                Submit
-              </Button>
-              <Button variant="contained" onClick={() => navigate(`/${tripID}`)}>Cancel</Button>
+            <Stack spacing={2} direction="row" className="button">
+              <Button variant="contained" type="submit">Submit</Button>
+              <Button variant="contained" onClick={navigateToIndex}>Cancel</Button>
             </Stack>
           </div>
         </form>

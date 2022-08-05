@@ -212,6 +212,12 @@ function App() {
             }
           />
           <Route
+            path="/:tripID/:eventID/editevent"
+            element={
+              trips && <EditTrip trips={trips} handleEdit={handleEdit} />
+            }
+          />
+          <Route
             path="/login"
             element={<Login handleLogin={handleAuthentication} />}
           />
