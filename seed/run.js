@@ -10,7 +10,7 @@ const eventData = require("./eventData.json");
 const tripsData = require("./tripsData.json");
 
 mongoose.connect(dbURL, async () => {
-    const trip = await Trip.find({}).populate('events')
+  const trip = await Trip.find({}).populate('events')
   await Trip.collection.deleteMany();
   await Event.collection.deleteMany();
 
