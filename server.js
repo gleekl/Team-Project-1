@@ -30,11 +30,16 @@ app.use(
   })
 );
 app.use(express.json());
+app.use(express.static(__dirname + '/client/build'))
 app.use(express.urlencoded({ extended: false }));
 
 app.use("/trips", tripController);
 app.use("/events", eventController);
 app.use("/users", userController);
+
+app.get('*', (req, res) => {
+  res.sendFile(__dirname + '/client/build/index.html')
+})
 
 // INITIALISATION
 mongoose.connect(dbURL, () => {

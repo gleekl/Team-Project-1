@@ -8,7 +8,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { Grid } from "@mui/material";
+import { Container, Grid } from "@mui/material";
 
 const TripDetails = ({
   trips,
@@ -25,16 +25,20 @@ const TripDetails = ({
 
   const eventList = trip.events.map((event) => {
     return (
-      <EventDetails
-        tripID={trip._id}
-        event={event}
-        key={event._id}
-        handleEventDelete={() => {
-          handleEventDelete(trip._id, event._id);
-        }}
-        handleEditEvent={handleEditEvent}
-        authorised={authorised}
-      />
+      <Container sx={{ py: 8 }} maxWidth="md">
+        <Grid container spacing={2}>
+          <EventDetails
+            tripID={trip._id}
+            event={event}
+            key={event._id}
+            handleEventDelete={() => {
+              handleEventDelete(trip._id, event._id);
+            }}
+            handleEditEvent={handleEditEvent}
+            authorised={authorised}
+          />
+        </Grid>
+      </Container>
     );
   });
 
