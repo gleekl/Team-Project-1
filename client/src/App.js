@@ -32,7 +32,6 @@ function App() {
     const url = "/events";
     const res = await fetch(url);
     const data = await res.json();
-    console.log(data);
     setEvents(data);
   };
 
