@@ -12,6 +12,7 @@ import Login from "./components/Users/Login";
 import Logout from "./components/Users/Logout";
 import Signup from "./components/Users/Signup";
 import ProtectedRoute from "./components/Protected/ProtectedRoute";
+import EditEvent from "./components/EditEvent";
 
 function App() {
   const [trips, setTrips] = useState(null);
@@ -28,9 +29,10 @@ function App() {
   };
 
   const getEvents = async () => {
-    const url = "/trips";
+    const url = "/events";
     const res = await fetch(url);
     const data = await res.json();
+    console.log(data);
     setEvents(data);
   };
 
@@ -124,7 +126,7 @@ function App() {
       getTrips();
       let updatedTrip = { ...trips.find((trip) => trip._id === tripID) };
       const index = trips.findIndex((trip) => trip._id === tripID);
-      setTrips([...trips.slice(0, index), updatedTrip, ...trips.slice(index)]);
+      setTrips([...trips.slice(0, index), updatedTrip, ...trips.slice(index + 1)]);
       navigate(`/${tripID}`);
     } else {
       console.log("error editing trip ", tripID);
@@ -143,9 +145,10 @@ function App() {
       body: formData,
     });
     if (res.ok) {
-      const newEvent = await res.json();
-      setTrips([...trips, newEvent]);
-      navigate(`/${eventID}`);
+      let updatedTrip = await res.json();
+      const index = trips.findIndex((trip) => trip._id === updatedTrip._id);
+      setTrips([...trips.slice(0, index), updatedTrip, ...trips.slice(index + 1)]);
+      navigate(`/${updatedTrip._id}`);
     } else {
       console.log("Error editing event ", eventID);
     }
@@ -190,6 +193,7 @@ function App() {
                   handleDelete={handleDelete}
                   handleEventDelete={handleEventDelete}
                   handleCreateEvent={handleCreateEvent}
+                  handleEditEvent={handleEditEvent}
                   authorised={authorised}
                 />
               )
@@ -209,6 +213,12 @@ function App() {
             path="/:tripID/edit"
             element={
               trips && <EditTrip trips={trips} handleEdit={handleEdit} />
+            }
+          />
+          <Route
+            path="/:tripID/:eventID/editevent"
+            element={
+              events && <EditEvent events={events} handleEditEvent={handleEditEvent} />
             }
           />
           <Route

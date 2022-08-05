@@ -8,12 +8,14 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import { Grid } from "@mui/material";
 
 const TripDetails = ({
   trips,
   handleDelete,
   handleEventDelete,
   handleCreateEvent,
+  handleEditEvent,
   authorised,
 }) => {
   const { tripID } = useParams();
@@ -24,11 +26,13 @@ const TripDetails = ({
   const eventList = trip.events.map((event) => {
     return (
       <EventDetails
+        tripID={trip._id}
         event={event}
         key={event._id}
         handleEventDelete={() => {
           handleEventDelete(trip._id, event._id);
         }}
+        handleEditEvent={handleEditEvent}
         authorised={authorised}
       />
     );
@@ -47,7 +51,7 @@ const TripDetails = ({
 
   return (
     <div className="trip-details">
-      <Card sx={{ maxWidth: 480 }}>
+      <Card sx={{ maxWidth: 900 }}>
         <CardMedia
           component="img"
           height="140"
@@ -91,20 +95,22 @@ const TripDetails = ({
               </Button>
             </CardActions>
           )}
-          <br />
-          <Typography gutterBottom variant="h5" component="div">
-            Events
-          </Typography>
-          {authorised && (
-            <Button onClick={navigateCreateEventPage} size="small">
-              Add a new event
-            </Button>
-          )}
-          {eventList}
         </CardContent>
+
       </Card>
+      <br />
+      <Grid item key={trip._id} xs={12} sm={4} md={4}>
+        <Typography gutterBottom variant="h5" component="div">
+          Events
+        </Typography>
+        {authorised && (
+          <Button onClick={navigateCreateEventPage} size="small">
+            Add a new event
+          </Button>
+        )}
+        {eventList}
+      </Grid>
     </div>
   );
 };
-
 export default TripDetails;

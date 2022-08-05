@@ -23,16 +23,20 @@ eventRouter.get("/:eventID", async (req, res) => {
 
 // CREATE route
 eventRouter.post("/:tripID", upload.single("image"), async (req, res) => {
+  let image = "https://res.cloudinary.com/dgb2gz29u/image/upload/v1657851570/empty-image_urwddn.jpg";
+  if (req.file && req.file.path) {
+    image = req.file.path
+  }
+
   try {
-    // add image to req.body
-    // image: req.file
-    const field = { ...req.body, image: req.file.path };
+    const field = { ...req.body, image: image };
     const newEvent = await Event.create(field);
     const trip = await Trip.findById(req.params.tripID).exec()
-    console.log(trip);
     trip.events.push(newEvent)
+
     const updatedTrip = await trip.save()
     await updatedTrip.populate('events')
+
     res.status(200).json(updatedTrip);
   } catch (error) {
     res.status(500).json({ errorMessage: error.Message });
@@ -43,13 +47,20 @@ eventRouter.post("/:tripID", upload.single("image"), async (req, res) => {
 
 // UPDATE route
 eventRouter.put("/:eventID", upload.single("image"), async (req, res) => {
+  console.log(req.body);
+  let image
+  if (req.file && req.file.path) {
+    image = req.file.path
+  }
   try {
+    const field = { ...req.body, image: image };
     const updatedEvent = await Event.findByIdAndUpdate(
       req.params.eventID,
-      req.body,
+      field,
       { new: true }
     ).exec();
-    res.status(200).json(updatedEvent);
+    const trip1 = await Trip.findOne({ events: { $in: req.params.eventID } }).populate('events')
+    res.status(200).json(trip1);
   } catch (error) {
     res.status(500).json({ errorMessage: error.Message });
     console.log(error.message);
