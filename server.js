@@ -38,7 +38,7 @@ app.use("/events", eventController);
 app.use("/users", userController);
 
 app.get('*', (req, res) => {
-  res.sendFile(__dirname = '/client/build/index.html')
+  res.sendFile(__dirname + '/client/build/index.html')
 })
 
 // INITIALISATION
