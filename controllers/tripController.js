@@ -47,6 +47,8 @@ tripsRouter.put("/:tripID", upload.single("image"), async (req, res) => {
   // BUG: if no events nested in a trip, Node.js is treating event as a string (''), which creates a CastError with Mongoose Schema.
   // SOLUTION: delete events field, let the update add a new event field
   // POTENTIAL CONCERNS: what if we edit a trip with events? Will this delete previous event?
+  let trip = await Trip.findById(req.params.tripID).exec();
+  let image = trip.image;
   if (req.file && req.file.path) {
     image = req.file.path;
   }
