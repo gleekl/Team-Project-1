@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
-import { useNavigate } from 'react-router-dom'
+import * as React from "react";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+import Stack from "@mui/material/Stack";
+import Button from "@mui/material/Button";
+import { useNavigate } from "react-router-dom";
 
 const EditTrip = ({ trips, handleEdit }) => {
   const { tripID } = useParams();
@@ -14,10 +14,10 @@ const EditTrip = ({ trips, handleEdit }) => {
   const [fields, setFields] = useState(trip);
   const [image, setImage] = useState(trip.image);
   const [buttonDisabled, setButtonDisabled] = useState(true);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const navigateToIndex = () => {
-    navigate('/')
-  }
+    navigate("/");
+  };
 
   const handleImageChange = (e) => {
     setImage(e.target.files[0]);
@@ -41,13 +41,12 @@ const EditTrip = ({ trips, handleEdit }) => {
     <>
       <div className="trip-div">
         <h1 className="trip-heading">Edit trip: {trip.title}</h1>
-        <form onSubmit={handleSubmit}
-          className="trip-form">
+        <form onSubmit={handleSubmit} className="trip-form">
           <div>
             <Box
               // component="form"
               sx={{
-                '& > :not(style)': { m: 1, width: '25ch' },
+                "& > :not(style)": { m: 1, width: "25ch" },
               }}
               noValidate
               autoComplete="off"
@@ -68,7 +67,7 @@ const EditTrip = ({ trips, handleEdit }) => {
             <Box
               // component="form"
               sx={{
-                '& > :not(style)': { m: 1, width: '25ch' },
+                "& > :not(style)": { m: 1, width: "25ch" },
               }}
               noValidate
               autoComplete="off"
@@ -89,12 +88,13 @@ const EditTrip = ({ trips, handleEdit }) => {
             <Box
               // component="form"
               sx={{
-                '& > :not(style)': { m: 1, width: '25ch' },
+                "& > :not(style)": { m: 1, width: "25ch" },
               }}
               noValidate
               autoComplete="off"
             >
-              <TextField InputLabelProps={{ shrink: true }}
+              <TextField
+                InputLabelProps={{ shrink: true }}
                 id="outlined-basic"
                 label="Trip Start Date"
                 variant="outlined"
@@ -110,12 +110,13 @@ const EditTrip = ({ trips, handleEdit }) => {
             <Box
               // component="form"
               sx={{
-                '& > :not(style)': { m: 1, width: '25ch' },
+                "& > :not(style)": { m: 1, width: "25ch" },
               }}
               noValidate
               autoComplete="off"
             >
-              <TextField InputLabelProps={{ shrink: true }}
+              <TextField
+                InputLabelProps={{ shrink: true }}
                 id="outlined-basic"
                 label="Trip End Date"
                 variant="outlined"
@@ -131,7 +132,7 @@ const EditTrip = ({ trips, handleEdit }) => {
             <Box
               // component="form"
               sx={{
-                '& > :not(style)': { m: 1, width: '25ch' },
+                "& > :not(style)": { m: 1, width: "25ch" },
               }}
               noValidate
               autoComplete="off"
@@ -152,7 +153,7 @@ const EditTrip = ({ trips, handleEdit }) => {
             <Box
               // component="form"
               sx={{
-                '& > :not(style)': { m: 1, width: '25ch' },
+                "& > :not(style)": { m: 1, width: "25ch" },
               }}
               noValidate
               autoComplete="off"
@@ -172,7 +173,11 @@ const EditTrip = ({ trips, handleEdit }) => {
           <br />
           <div className="form-padding">
             <div>
-              <h4><label htmlFor="image">Upload a cover photo for your trip!</label></h4>
+              <h4>
+                <label htmlFor="image">
+                  Upload a cover photo for your trip!
+                </label>
+              </h4>
               <br />
               <input
                 name="image"
@@ -183,9 +188,13 @@ const EditTrip = ({ trips, handleEdit }) => {
             </div>
             <br />
             <br />
-          <Stack spacing={2} direction="row" className="button">
-              <Button variant="contained" type="submit">Submit</Button>
-              <Button variant="contained" onClick={navigateToIndex}>Cancel</Button>
+            <Stack spacing={2} direction="row" className="button">
+              <Button variant="contained" type="submit">
+                Submit
+              </Button>
+              <Button variant="contained" onClick={navigateToIndex}>
+                Cancel
+              </Button>
             </Stack>
           </div>
         </form>

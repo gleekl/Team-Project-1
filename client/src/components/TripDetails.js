@@ -80,8 +80,11 @@ const TripDetails = ({
           </Typography>
           {authorised && (
             <CardActions>
-              <Button size="small">
-                <Link to={`/${trip._id}/edit`}>Edit</Link>
+              <Button
+                size="small"
+                onClick={() => navigate(`/${trip._id}/edit`)}
+              >
+                Edit
               </Button>
               <Button size="small" onClick={() => handleDelete(trip._id)}>
                 Delete
