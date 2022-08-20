@@ -1,4 +1,12 @@
-# Team-Project-1
+# Team-Project: Travel Log
+
+This is a team project built within 4 days in a group of 3 student software engineers. We all love traveling and documenting our trips, so we made a Travel Log to make documenting trips easier for people like us! 
+</br>
+[Click here](https://tripapplication.herokuapp.com/) to enter Travel Log.  
+Username: demo  
+Password: demo
+</br>
+[![Screen Shot 2022-08-20 at 1.18.40 pm](https://i.im.ge/2022/08/20/ODpYPF.Screen-Shot-2022-08-20-at-1-18-40-pm.png)](https://im.ge/i/ODpYPF)
 
 ### Group Collaborators:
 - [Brendan](https://github.com/brendan-young)
@@ -7,7 +15,7 @@
 
 ## Task Brief
 
-* **Build a full-stack application**
+* **Build a full-stack application with CRUD functionality**
 * **Use an Express API**
 * **Implement thoughtful user stories**
 * **Be deployed online via Heroku**
@@ -45,3 +53,6 @@ However, relational databasing proved to have its own complexity when creating C
 ### Styling Challenges
 In terms of styling challenges, to avoid refactoring of code it is best to incorporate the particular framework that is being used/to be used while building out functionality. This would avoid a lot of refactoring for front end formatting further down the track. 
 
+
+## Acknowledgement
+A big thank to Dido @ General Assembly who help to guide us to the right direction when we get stuck, thanks Hugh @ General Assembly for sharing his knowledge!
