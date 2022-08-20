@@ -1,5 +1,7 @@
 # Team-Project-1
 
+This is a team project built within 4 days in a group of 3 student software engineers. We all love traveling and documenting our trips, so we made a Travel Log to make documenting trips easier for people like us! [Click here](https://tripapplication.herokuapp.com/) to enter our website.
+
 ### Group Collaborators:
 - [Brendan](https://github.com/brendan-young)
 - [Yinmu](https://github.com/ymcodespace)
