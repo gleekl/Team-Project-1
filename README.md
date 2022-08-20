@@ -1,6 +1,12 @@
-# Team-Project-1
+# Team-Project: Travel Log
 
-This is a team project built within 4 days in a group of 3 student software engineers. We all love traveling and documenting our trips, so we made a Travel Log to make documenting trips easier for people like us! [Click here](https://tripapplication.herokuapp.com/) to enter our website.
+This is a team project built within 4 days in a group of 3 student software engineers. We all love traveling and documenting our trips, so we made a Travel Log to make documenting trips easier for people like us! 
+</br>
+[Click here](https://tripapplication.herokuapp.com/) to enter Travel Log.  
+Username: demo  
+Password: demo
+</br>
+[![Screen Shot 2022-08-20 at 1.18.40 pm](https://i.im.ge/2022/08/20/ODpYPF.Screen-Shot-2022-08-20-at-1-18-40-pm.png)](https://im.ge/i/ODpYPF)
 
 ### Group Collaborators:
 - [Brendan](https://github.com/brendan-young)
@@ -9,7 +15,7 @@ This is a team project built within 4 days in a group of 3 student software engi
 
 ## Task Brief
 
-* **Build a full-stack application**
+* **Build a full-stack application with CRUD functionality**
 * **Use an Express API**
 * **Implement thoughtful user stories**
 * **Be deployed online via Heroku**
