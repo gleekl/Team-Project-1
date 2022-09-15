@@ -88,7 +88,7 @@ const TripIndex = ({ trips, handleDelete, authorised }) => {
             color="text.secondary"
             paragraph
           >
-            The travel diary you always want. Log your trip and special events
+            The travel diary you can access at anytime, all on the web. Log your trips and special events
             wherever you are.
           </Typography>
           <Stack

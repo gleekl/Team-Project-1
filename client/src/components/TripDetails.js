@@ -58,7 +58,7 @@ const TripDetails = ({
       <Card sx={{ maxWidth: 900 }}>
         <CardMedia
           component="img"
-          height="140"
+          height="200"
           image={trip.image}
           alt={trip.title}
         />
