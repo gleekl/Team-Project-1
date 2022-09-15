@@ -51,8 +51,8 @@ However, relational databasing proved to have its own complexity when creating C
 
 
 ### Styling Challenges
-In terms of styling challenges, to avoid refactoring of code it is best to incorporate the particular framework that is being used/to be used while building out functionality. This would avoid a lot of refactoring for front end formatting further down the track. 
+In terms of styling, we found that in order to avoid refactoring of code it was best to incorporate the particular framework that is being used/to be used whilst building the functionality based on the limited time we had. This would have avoided a lot of refactoring for the frontend formatting. 
 
 
 ## Acknowledgement
-A big thank to Dido @ General Assembly who help to guide us to the right direction when we get stuck, thanks Hugh @ General Assembly for sharing his knowledge!
+A big thanks to Dido @ General Assembly who helped guide us to the right direction whenever we got stuck & to Hugh @ General Assembly for sharing his knowledge!
